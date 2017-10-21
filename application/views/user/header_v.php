@@ -264,7 +264,7 @@
 				<a href="#"></a>
 				
 				<?php
-				if(isset($this->session->userdata('login_user')['logged_in']) && $this->session->userdata('login_user')['logged_in'] == TRUE){ ?>
+				if(!empty($this->session->userdata('login_user')['logged_in']) && isset($this->session->userdata('login_user')['logged_in']) && $this->session->userdata('login_user')['logged_in'] == TRUE){ ?>
 					<a href="#"></a>
 					<a href="#"></a>
 					<a href="#"></a>
