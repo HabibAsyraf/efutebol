@@ -10,12 +10,7 @@
 				margin-right: auto;
 				margin-left: auto;
 			}
-			#wowslider-container1 {
-				padding-left: 30px;
-				padding-top: 10px;
-				padding-right: 10px;
-			}
-			header {
+			header{
 				height: 125px;
 				width: 1024px;
 				color: #FFF;
@@ -49,174 +44,9 @@
 				padding-top: 10px;
 				font-size: 15px;
 			}
-			#main {
-				height: 448px;
-				width: 1024px;
-			}
 			body{
-				background: #292931;	
-				}
-			footer {
-				color: #FFF;
-				padding-right: 40px;
-				padding-left: 340px;
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 12px;
-				border: thin solid #000;
-				background-color: #000;
+				background: #292931;
 			}
-			#form8 {
-				font-family: sans-serif;
-				font-size: 35px;
-				text-decoration: none;
-				color: #FF6;
-			}
-			#form9 {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-size: 15px;
-				color: #FFF;
-				border-top-color: #0FC;
-				border-right-color: #0FC;
-				border-bottom-color: #0FC;
-				border-left-color: #0FC;
-			}
-			#login{
-				position: absolute;
-				top:50%;
-				left:50%;
-				bottom: 10%;
-				transform:translate(-50%, -50%);
-				}
-			#login h2{
-				text-align: center;
-				color: white;
-				font-family: sans-serif;
-				font-size: 35px;
-				}
-			#login input{
-				display: block;
-				width: 320px;
-				height: 40px;
-				padding: 10px;
-				font-size: 14px;
-				font-family: sans-serif;
-				color: white;
-				background: rgba(0,0,0,0.3);
-				outline: none;
-				border: 1px solid rgba(0,0,0,0.3);
-				border-radius: 5px;
-				box-shadow: inset 0px -5px 45px rgba(100,100,100,0.2),0px 1px 1px rgba(255,255,255,0.2);
-				margin-bottom: 10px; 
-				}
-			#login #login-btn{
-				background: #55acee;
-				font-size: 18px;
-				text-align: center;
-				vertical-align: middle;
-				line-height: 20px;
-				}
-			#login form p {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				color: #FFF;
-			}
-			#main #contentTwo {
-				height: 250px;
-				width: 500px;
-				float: left;
-				background-color: #292931;
-				border-top-style: dotted;
-				border-right-style: dotted;
-				border-bottom-style: dotted;
-				border-left-style: dotted;
-				border-top-color: #FF9;
-				border-right-color: #FF9;
-				border-bottom-color: #FF9;
-				border-left-color: #FF9;
-			}
-			#main #contentThree {
-				height: 250px;
-				width: 500px;
-				float: right;
-				background-color: #292931;
-				border-top-style: dotted;
-				border-right-style: dotted;
-				border-bottom-style: dotted;
-				border-left-style: dotted;
-				border-top-color: #FF9;
-				border-right-color: #FF9;
-				border-bottom-color: #FF9;
-				border-left-color: #FF9;
-			}
-			#form2 {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-size: xx-large;
-				color: #FFF;
-				background-color: #292931;
-			}
-			#form3 {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-size: medium;
-				font-weight: normal;
-				border-top-color: #36F;
-				border-right-color: #36F;
-				border-bottom-color: #36F;
-				border-left-color: #36F;
-				color: #FFF;
-				background-color: #292931;
-			}
-			#form4 {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-size: xx-large;
-				color: #FFF;
-				background-color: #292931;
-			}
-			#form5 {
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-size: 15px;
-				color: #FFF;
-				background-color: #292931;
-			}
-			header {
-				height: 125px;
-				width: 1024px;
-				color: #FFF;
-				background-color: #000;
-			}
-			#titleBar {
-				height: 35px;
-				width: 1024px;
-			}
-			#topNav {
-				height: 35px;
-				width: 1009px;
-				padding-top: 5px;
-				padding-left: 15px;
-			}
-			#topNav a:hover {
-				text-decoration: line-through;
-				border: 2px none #000;
-				color: #FF3;
-				font-style: normal;
-				text-transform: uppercase;
-			}
-			#topNav a {
-				text-transform: uppercase;
-				color: #FFF;
-				text-decoration: none;
-				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-				font-weight: bold;
-				display: inline-block;
-				margin-right: 15px;
-				padding-top: 10px;
-				font-size: 15px;
-			}
-			#main {
-				height: 448px;
-				width: 1024px;
-			}
-			body{
-				background: #292931;	
-				}
 			footer {
 				color: #FFF;
 				padding-right: 40px;
@@ -242,7 +72,7 @@
 				<a href="#"></a>
 				<a href="<?php echo base_url(); ?>page/futsal_court"> Futsal Court </a>
 				<a href="#"></a>
-				<a href="<?php echo base_url(); ?>booking"> Reservations </a>
+				<a href="<?php echo base_url(); ?>reservation/reservation_form"> Reservations </a>
 				<a href="#"></a>
 				<a href="<?php echo base_url(); ?>page/events"> Events </a>
 				<a href="#"></a>
@@ -278,3 +108,4 @@
 				}
 				?>
 			</nav><!-- end topNav -->
+			<div id="main">

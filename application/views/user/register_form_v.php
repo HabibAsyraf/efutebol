@@ -1,6 +1,23 @@
 <?php
 $this->load->view('user/header_v');
 ?>
+<style type="text/css">
+	#form8 {
+		font-family: sans-serif;
+		font-size: 35px;
+		text-decoration: none;
+		color: #FF6;
+	}
+	#form9 {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-size: 15px;
+		color: #FFF;
+		border-top-color: #0FC;
+		border-right-color: #0FC;
+		border-bottom-color: #0FC;
+		border-left-color: #0FC;
+	}
+</style>
 <p>&nbsp;</p>
 <p align="center">&nbsp;</p>
 <div id="form8">
