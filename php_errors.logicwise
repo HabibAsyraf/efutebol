@@ -1,0 +1,18 @@
+[21-Oct-2017 17:00:37 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function base_url() in C:\xampp\htdocs\efutebol\application\controllers\Home.php on line 6
+[21-Oct-2017 17:33:37 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:36:24 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:36:31 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:36:37 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:36:51 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:36:56 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:37:00 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:37:03 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:37:07 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:37:11 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:38:39 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:40:26 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:40:51 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 17:40:58 Asia/Kuala_Lumpur] PHP Fatal error:  Call to undefined function basse_url() in C:\xampp\htdocs\efutebol\application\views\user\homepage_v.php on line 21
+[21-Oct-2017 19:31:52 Asia/Kuala_Lumpur] PHP Parse error:  syntax error, unexpected 'exit' (T_EXIT) in C:\xampp\htdocs\efutebol\application\controllers\User.php on line 7
+[21-Oct-2017 19:37:58 Asia/Kuala_Lumpur] PHP Fatal error:  Call to a member function save_registration() on a non-object in C:\xampp\htdocs\efutebol\application\controllers\User.php on line 7
+[21-Oct-2017 19:38:08 Asia/Kuala_Lumpur] PHP Fatal error:  Call to a member function save_registration() on a non-object in C:\xampp\htdocs\efutebol\application\controllers\User.php on line 7

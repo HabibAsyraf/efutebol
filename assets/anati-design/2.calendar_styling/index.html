@@ -1,0 +1,64 @@
+<script src="./js/jquery-1.10.2.min.js">
+</script>
+<link rel="stylesheet" 
+href="./js/jquery-ui.min.css"/>
+<script src="./js/jquery-ui.min.js"></script>
+
+<style type="text/css">
+.calendar_block {
+    box-shadow: 0 0 5px 5px #dcdcdc;
+    background-color:#FF8800;
+    float: left;
+}
+
+.calendar {
+    padding:20px;
+}
+
+.calendar .ui-widget-header {
+    border:none;
+    background:none;
+}
+
+.calendar .ui-datepicker {
+    border: 3px solid #fff;
+    padding:10px 30px 10px;
+}
+
+.calendar .ui-corner-all {
+    border-radius:10px;
+}
+
+.calendar .ui-widget-content {
+    background: none;
+}
+
+.calendar .ui-datepicker-calendar {
+   color: #fff;
+}
+
+.calendar .ui-state-hover {
+   background-color: #fff !important;
+   color: #FF8800 !important;
+}
+
+.calendar .ui-state-default {
+    text-align:center;
+    background: none;
+    color: #fff;
+    width:40px;
+    padding:10px 0 10px 0;
+}
+
+ </style>
+ <div class="calendar_block">
+    <div class="calendar"></div>
+</div>
+<script>
+    $(".calendar").datepicker(
+	{
+		firstDay: 1,
+		dayNamesMin: [ "sun","mon", "tue", 
+		"wed", "thu", "fri", "sat" ]
+		});
+</script>
