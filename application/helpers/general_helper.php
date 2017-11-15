@@ -477,4 +477,12 @@ function get_youtube_id($youtube_link){
 	
 	return $id_parameter;
 }
+
+function encrypt_data($data = ""){
+	return base64url_encode(serialize($data));
+}
+
+function decrypt_data($data = ""){
+	return unserialize(base64url_decode($data));
+}
 ?>

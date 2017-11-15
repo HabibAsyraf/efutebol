@@ -2,7 +2,7 @@
 $this->load->view('user/header_v');
 ?>
 <div id="contentOne">
-	<form id="form1" name="form1" method="post" action="">
+	<form id="form1" class="form-reservation" name="form1" method="post" action="">
 		<p align="center">
 			<script src="<?php echo base_url(); ?>assets/anati-design/js/jquery-1.10.2.min.js"></script>
 			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/anati-design/js/jquery-ui.min.css" />
@@ -105,12 +105,10 @@ $this->load->view('user/header_v');
 				</script>      
 			</div>
 		</p>
-	</form>
-</div>
- <!-- end contentOne -->
+	</div>
+	<!-- end contentOne -->
   
-<div id="contentTwo">
-	<form id="form2" name="form2" method="post" action="">
+	<div id="contentTwo">
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 		<div align="center">
@@ -200,14 +198,23 @@ $this->load->view('user/header_v');
 			</table>
 		</div>
 		<p>&nbsp;</p>
-	</form>
-	<form id="form3" name="form3" method="post" action="">
-		<div id="Button"><b>Booking</b></div>
+		<input type="hidden" name="booking_date" value="<?php echo date('d/m/Y'); ?>" />
+		<input type="hidden" name="booking_time" value="8.00 pm - 9.00 pm" />
+		<input type="hidden" name="temp" value="temp" />
+		<div id="Button" class="btn-submit-booking" style="cursor: pointer"><b>Booking</b></div>
 	</form>
 	<p>&nbsp;</p>
 </div>
 <!-- end contentTwo -->
 <p>&nbsp;</p>
+<script>
+$(function(){
+	$('.btn-submit-booking').on('click', function(){
+		// alert();
+		$('.form-reservation').submit();
+	});
+});
+</script>
 <?php
 $this->load->view('user/footer_v');
 ?>

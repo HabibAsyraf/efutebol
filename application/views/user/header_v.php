@@ -56,6 +56,20 @@
 				border: thin solid #000;
 				background-color: #000;
 			}
+			#container #main #contentOne #form1 div div p {
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: x-large;
+				color: #FFF;
+			}
+			#container #main #contentOne #form1 div div table tr td {
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: medium;
+				color: #FFF;
+				border-top-style: none;
+				border-right-style: none;
+				border-bottom-style: none;
+				border-left-style: none;
+			}
 		</style>
 		
 		<!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
