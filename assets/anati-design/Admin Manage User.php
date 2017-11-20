@@ -132,7 +132,17 @@ footer {
 	border-left-color: #000;
 	color: #FFF;
 }
+#container #main #contentOne #form1 div div div table tr td {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #FFF;
+	font-size: x-small;
+}
 </style>
+<script type="text/javascript">
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+</script>
 </head>
 
 
@@ -185,12 +195,13 @@ footer {
           <div align="left">
             <table width="214" height="90" border="0.5">
               <tr>
-                <td width="181"><label for="textfield"></label>
+                <td colspan="2"><label for="textfield"></label>
                   <input name="textfield" type="text" id="textfield" value="" size="30" /></td>
-                <td width="44"><img src="Images/index.png" width="23" height="22" /></td>
+                <td width="24"><img src="Images/index.png" width="23" height="22" /></td>
                 </tr>
               <tr>
-                <td height="36"><input type="submit" name="button" id="button" value="Add" /> <input type="submit" name="button2" id="button2" value="Delete" /></td>
+                <td width="36" height="36"><a href="#"><img src="Images/add_friend-256.png" width="32" height="29" /></a></td>
+                <td width="140"><img src="Images/png.icons8.com.png" width="26" height="24" /></td>
                 <td>&nbsp;</td>
                 </tr>
             </table>

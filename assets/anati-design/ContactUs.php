@@ -6,7 +6,7 @@
 <title>Untitled Document</title>
 <style type="text/css">
 #container {
-	height: 1000px;
+	height: 600px;
 	width: 1024px;
 	margin-right: auto;
 	margin-left: auto;
@@ -21,7 +21,7 @@
 	float: right;
 	height: 400px;
 	width: 500px;
-	background-color: #FF9;
+	background-color: #FFF;
 }
 header {
 	height: 125px;
@@ -34,7 +34,7 @@ header {
 	width: 1024px;
 }
 #topNav {
-	height: 35px;
+	height: 45px;
 	width: 1009px;
 	padding-top: 5px;
 	padding-left: 15px;
@@ -65,6 +65,20 @@ header {
 body{
 	background: #292931;	
 	}
+#container #main #contentTwo #form2 div table tr td {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: medium;
+	color: #000;
+}
+footer {
+	color: #FFF;
+	padding-right: 40px;
+	padding-left: 340px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: thin solid #000;
+	background-color: #000;
+}
 </style>
 </head>
 
@@ -116,6 +130,38 @@ body{
   
   <div id="contentTwo">
     <form id="form2" name="form2" method="post" action="">
+      <div align="center">
+        <p>&nbsp;</p>
+        <table width="477" height="239" border="0.5">
+          <tr>
+            <td>Efutebol Futsal Centre</td>
+            </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>6th Floor, Kompleks Melaka Mall, </td>
+          </tr>
+          <tr>
+            <td>Ayer Keroh, Lebuh Ayer Keroh, 75450 </td>
+          </tr>
+          <tr>
+            <td>Melaka</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Tel: +607-355 1888<br /></td>
+          </tr>
+          <tr>
+            <td>Fax: +607-355 2077</td>
+            </tr>
+          <tr>
+            <td>Email: enquiry@efutebolfutsalcentre.com.my</td>
+            </tr>
+        </table>
+      </div>
       <p>&nbsp;</p>
     </form>
   </div><!-- end contentTwo -->
@@ -125,7 +171,7 @@ body{
 </div><!--  end main -->
 
 <footer>
-<nav id"bottomNav">bottom nav</nav>
+<nav id"bottomNav">Designed by Anati Radzi © 2017 eFutebol. All Rights Reserved.</nav>
 </footer>
 
 </div><!-- end container -->

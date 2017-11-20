@@ -6,7 +6,7 @@
 <title>Untitled Document</title>
 <style type="text/css">
 #container {
-	height: 500px;
+	height: 700px;
 	width: 1024px;
 	margin-right: auto;
 	margin-left: auto;
@@ -22,6 +22,13 @@
 	height: 465px;
 	width: 570px;
 	background-color: #292931;
+}
+#main #contentThree {
+	float: right;
+	height: 50px;
+	width: 1024px;
+	background-color: #292931;
+	clear: none;
 }
 header {
 	height: 125px;
@@ -96,10 +103,24 @@ footer {
 	-ms-transition: all 0.2s ease 0s;
 	-o-transition: all 0.2s ease 0s;
 	transition: all 0.2s ease 0s;
-	margin-left: 200px;
+	margin-left: 100px;
+	margin-left: 425px;
+	
 	}
 #Button:hover {
 	background-color: #FFF;
+}
+#container #main #contentTwo #form3 div table tr td {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #FFF;
+	border-top-style: groove;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+}
+#container #main #contentTwo #form3 div {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #FFF;
 }
 </style>
 </head>
@@ -220,9 +241,8 @@ href="./js/jquery-ui.min.css"/>
   
   <div id="contentTwo">
     <form id="form2" name="form2" method="post" action="">
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
       <div align="center">
+        <p>&nbsp;</p>
         <table width="558" border="0.5">
           <tr bgcolor="#FFFF99">
             <td colspan="2" bgcolor="#FFFF66"> <b><center>eFutebol Futsal</center></b> </td>
@@ -291,20 +311,60 @@ href="./js/jquery-ui.min.css"/>
             10.00 pm - 11.00 pm</span></td>
             </tr>
         </table>
-    </div>
-      <p>&nbsp;</p>
+      </div>
     </form>
     <form id="form3" name="form3" method="post" action="">
-    <div id="Button"><b>Booking</b></div>
-    
-    
-    
+      <div align="left"><br />
+        Court Availability<br />
+        <table width="565" border="0.5">
+          <tr>
+            <td width="112"><div align="center">
+              <input type="checkbox" name="checkbox" id="checkbox" />
+              <label for="checkbox"></label>
+            </div></td>
+            <td width="111"><div align="center">
+              <input type="checkbox" name="checkbox2" id="checkbox2" />
+              <label for="checkbox2"></label>
+            </div></td>
+            <td width="108"><div align="center">
+              <input type="checkbox" name="checkbox3" id="checkbox3" />
+              <label for="checkbox3"></label>
+            </div></td>
+            <td width="100"><div align="center">
+              <input type="checkbox" name="checkbox4" id="checkbox4" />
+              <label for="checkbox4"></label>
+            </div></td>
+            <td width="112"><div align="center">
+              <input type="checkbox" name="checkbox5" id="checkbox5" />
+              <label for="checkbox5"></label>
+            </div></td>
+            </tr>
+          <tr>
+            <td><div align="center">A</div></td>
+            <td><div align="center">B</div></td>
+            <td><div align="center">C</div></td>
+            <td><div align="center">D</div></td>
+            <td><div align="center">E</div></td>
+            </tr>
+        </table>
+      </div>
+      <p>&nbsp;</p>
+    </form>
+    <form id="form4" name="form4" method="post" action="">
+      
     </form>
     <p>&nbsp;</p>
   </div>
   <!-- end contentTwo -->
+  
+    <div id="contentThree">
+    <form id="form2" name="form2" method="post" action="">
+        <div id="Button"><b>Booking</b></div>
+    </form>
+  </div><!-- end contentThree -->
  
 </div><!--  end main -->
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <footer>
 <nav id"bottomNav">Designed by Anati Radzi © 2017 eFutebol. All Rights Reserved.</nav>
