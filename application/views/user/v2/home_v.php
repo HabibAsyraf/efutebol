@@ -1,6 +1,7 @@
 <?php $this->load->view('user/v2/header_v'); ?>
 <div class="row">
 	<div class="col-md-12">
+		<div class="portlet">
 		<div id="wowslider-container1">
 			<div class="ws_images">
 				<ul>
@@ -18,6 +19,28 @@
 					<a href="#" title="banner3"><span><img src="<?php echo base_url(); ?>assets/anati-design/data1/tooltips/banner3.jpg" alt="banner3"/>3</span></a>
 					<a href="#" title="banner4"><span><img src="<?php echo base_url(); ?>assets/anati-design/data1/tooltips/banner4.jpg" alt="banner4"/>4</span></a>
 					<a href="#" title="banner5"><span><img src="<?php echo base_url(); ?>assets/anati-design/data1/tooltips/banner5.jpg" alt="banner5"/>5</span></a>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="portlet box black">
+			<div class="portlet-title">
+				<div class="caption">
+					<span class="bold">Welcome!</span>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h2 class="bold">Welcome To eFutebol(Futsal Court Reservation)</h2>
+						<h4 class="">Let's reserve for the pitch now while it still available!</h4>
+						<br/>
+						<a href="<?php echo base_url(); ?>reservation/reservation_form" class="btn btn-lg dark">Reserve Now</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -39,4 +62,4 @@
 	})
 </script>
 <!-- END CUSTOM SCRIPTS -->
-<?php $this->load->view('user/v2/footer_close_v'); ?>    
+<?php $this->load->view('user/v2/footer_close_v'); ?>

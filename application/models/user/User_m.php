@@ -14,46 +14,59 @@ class User_m extends CI_Model {
 			
 			$error_msg = array();
 			if($db_user['name'] == ""){
-				$error_msg[] = "Please enter your name";
+				$error_msg['name'] = "Please enter your name";
 			}
 			
 			if($db_user['contact_no'] == ""){
-				$error_msg[] = "Please enter your Contact No.";
+				$error_msg['contact_no'] = "Please enter your Contact No";
+			}
+			else if(!filter_phone($db_user['contact_no'])){
+				$error_msg['contact_no'] = "Invalid Contact No.";
 			}
 			
 			if($db_user['email_address'] == ""){
-				$error_msg[] = "Please enter your name";
+				$error_msg['email_address'] = "Please enter your Email Address";
 			}
 			else{
 				if(!filter_var($db_user['email_address'], FILTER_VALIDATE_EMAIL)){
-					$error_msg[] = "Please enter the valid email.";
+					$error_msg['email_address'] = "Invalid Email Address. Please enter the valid Email Address";
 				}
 				else{
 					#Check email address is already exists
 					$sql_chk = "SELECT * FROM `ef_user` WHERE `email_address` = " . $this->db->escape($db_user['email_address']) . " LIMIT 1";
 					$query_chk = $this->db->query($sql_chk);
 					if($query_chk->num_rows() > 0) {
-						$error_msg[] = "Email address is already exists. Please try another email.";
+						$error_msg['email_address'] = "Email address `" . $db_user['email_address'] . "` is already exists. Please try another email";
 					}
 				}
 			}
 			
 			if($post['password'] == ""){
-				$error_msg[] = "Please enter password";
+				$error_msg['password'] = "Please enter password";
+				
+				if($post['confirm_password'] == ""){
+					$error_msg['confirm_password'] = "Please confirm your password";
+				}
 			}
 			else if($post['confirm_password'] == ""){
-				$error_msg[] = "Please confirm your password";
+				$error_msg['confirm_password'] = "Please confirm your password";
+				
+				if($post['password'] == ""){
+					$error_msg['password'] = "Please enter password";
+				}
 			}
 			else if($post['password'] !== $post['confirm_password']){
-				$error_msg[] = "Password and Confirm Password must be the same value";
+				$error_msg['password'] = "Password and Confirm Password must be the same value";
+				$error_msg['confirm_password'] = "";
 			}
-			else if(strlen($post['password']) < 6){
-				$error_msg[] = "Minimum password length is 6. Please enter the valid password.";
+			else if(strlen($post['password']) != 6){
+				$error_msg['password'] = "Password length must be 6";
+				$error_msg['confirm_password'] = "";
 			}
 			
 			if(sizeof($error_msg) > 0){
-				set_message(implode("|", $error_msg), "danger");
-				return false;
+				set_message(implode(" | ", $error_msg), "danger");
+				return $error_msg;
 			}
 			
 			$db_user['password'] = md5($post['password']);

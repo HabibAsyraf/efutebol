@@ -44,6 +44,7 @@
 		<!-- END CORE PLUGINS -->
 		<!-- BEGIN PAGE LEVEL PLUGINS -->
 		<script src="<?php echo base_url(); ?>assets/global/plugins/moment.min.js" type="text/javascript"></script>
+		<script src="<?php echo base_url(); ?>assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
@@ -62,7 +63,19 @@
 		<script src="<?php echo base_url(); ?>assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+		<script src="<?php echo base_url(); ?>assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+		<script src="<?php echo base_url(); ?>assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 		<!-- END PAGE LEVEL PLUGINS -->
 		<!-- BEGIN THEME GLOBAL SCRIPTS -->
 		<script src="<?php echo base_url(); ?>assets/global/scripts/app.min.js" type="text/javascript"></script>
 		<!-- END THEME GLOBAL SCRIPTS -->
+		
+		<!-- BEGIN GLOBAL CUSTOM SCRIPTS -->
+		<script type="text/javascript">
+			var baseUrl = '<?php echo base_url(); ?>';
+			$(function(){
+				//Remove error class on input change
+				$('input, select, textarea').on('change', function(){ $(this).closest('.form-group').removeClass('has-error'); });
+			})
+		</script>
+		<!-- END GLOBAL CUSTOM SCRIPTS -->

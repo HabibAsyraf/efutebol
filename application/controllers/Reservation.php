@@ -20,7 +20,11 @@ class Reservation extends CI_Controller{
 		}
 		
 		$data['meta_title'] = "Reservation Form";
-		$this->load->view('user/reservation_form_v', $data);
+		$data['meta_tab_title'] = "Reservation Form";
+		$data['controller'] = "reservation";
+		$data['method'] = "reservation_form";
+		
+		$this->load->view('user/v2/reservation_form_v', $data);
 	}
 	
 	public function booking_form($booking_data = ""){

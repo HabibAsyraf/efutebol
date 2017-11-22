@@ -62,9 +62,9 @@ function get_message($show = true, $alert_form = true){
 		$msg = $obj->session->userdata('system-message');
 		// $alert_message =  '<div class="alert blink_me alert-' . $obj->session->userdata('message-type') . ' alert-dismissable">' . $msg . ' <button class="close" aria-hidden="true" data-dismiss="alert" type="button">x</button></div>';
 		if($obj->session->userdata('message-type') == "success")
-			$alert_message =  '<div style="color: green; font-weight: bold;" class="alert blink_me alert-' . $obj->session->userdata('message-type') . ' alert-dismissable">' . $msg . '</div>';
+			$alert_message =  '<div style="color: steelblue; font-weight: bold;" class="alert blink_me alert-' . $obj->session->userdata('message-type') . ' alert-dismissable">' . $msg . ' <button class="close btn btn-default" aria-hidden="true" data-dismiss="alert" type="button">x</button></div>';
 		else if($obj->session->userdata('message-type') == "danger")
-			$alert_message =  '<div style="color: red; font-weight: bold;" class="alert blink_me alert-' . $obj->session->userdata('message-type') . ' alert-dismissable">' . $msg . '</div>';
+			$alert_message =  '<div style="color: red; font-weight: bold;" class="alert blink_me alert-' . $obj->session->userdata('message-type') . ' alert-dismissable">' . $msg . ' <button class="close btn btn-default" aria-hidden="true" data-dismiss="alert" type="button">x</button></div>';
 		
 		$obj->session->unset_userdata('system-message');
 		$obj->session->unset_userdata('message-type');

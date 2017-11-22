@@ -15,24 +15,26 @@
 		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 		<!-- END GLOBAL MANDATORY STYLES -->
 		<!-- BEGIN PAGE LEVEL PLUGINS -->
+		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
 		<!-- END PAGE LEVEL PLUGINS -->
 		<!-- BEGIN THEME GLOBAL STYLES -->
-		<link href="<?php echo base_url(); ?>assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+		<link href="<?php echo base_url(); ?>assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
 		<!-- END THEME GLOBAL STYLES -->
 		<!-- BEGIN THEME LAYOUT STYLES -->
 		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/themes/blue-hoki.min.css" rel="stylesheet" type="text/css" id="style_color" />
 		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/anati-design/engine1/style.css" />
+		<link href="<?php echo base_url(); ?>assets/anati-design/engine1/style.css" rel="stylesheet" type="text/css" />
 		<style>
 			.page-wrapper .page-wrapper-middle {
-				background: url(<?php echo base_url(); ?>assets/images/background3.jpg) center bottom no-repeat;
-				background-size: cover;
+				background: unset;
 			}
 			.page-header-top{
 				background: url(<?php echo base_url(); ?>assets/images/header.jpg) left center no-repeat;
@@ -42,7 +44,7 @@
 				height: 150px;
 			}
 			.page-header .page-header-menu {
-				background: #000000;
+				background: #000000e3;
 			}
 			.page-header .page-header-menu .hor-menu .navbar-nav>li.active>a, .page-header .page-header-menu .hor-menu .navbar-nav>li.active>a:hover, .page-header .page-header-menu .hor-menu .navbar-nav>li.current>a, .page-header .page-header-menu .hor-menu .navbar-nav>li.current>a:hover {
 				color: #000000;
@@ -61,7 +63,7 @@
 				color: #000000;
 			}
 			.page-footer {
-				background: #000000;
+				background: #000000e3;
 				color: #ffffff;
 			}
 			#wowslider-container1{
@@ -71,6 +73,42 @@
 			#wowslider-container1 .ws_images {
 				max-height: unset;
 				max-width: unset;
+			}
+			.portlet.box.black>.portlet-title, .portlet.black, .portlet>.portlet-body.black {
+				background-color: #000000;
+			}
+			.portlet.box.green-hulk>.portlet-title, .portlet.green-hulk, .portlet>.portlet-body.green-hulk {
+				background-color: #007400;
+			}
+			.portlet.box.green-hulk{
+				border: 1px solid #007400;
+			}
+			.btn.green-hulk:not(.btn-outline) {
+				color: #FFF;
+				background-color: #007400;
+				border-color: #427400;
+			}
+			.btn.green-hulk:not(.btn-outline).active, .btn.green-hulk:not(.btn-outline):active, .btn.green-hulk:not(.btn-outline):hover, .open>.btn.green-hulk:not(.btn-outline).dropdown-toggle {
+				color: #FFF;
+				background-color: #217ebd;
+				border-color: #1f78b5;
+			}
+			.btn.green-hulk:not(.btn-outline).active, .btn.green-hulk:not(.btn-outline):active, .btn.green-hulk:not(.btn-outline):hover, .open>.btn.green-hulk:not(.btn-outline).dropdown-toggle {
+				color: #FFF;
+				background-color: #276c27;
+				border-color: #027002;
+			}
+			.alert{
+				padding: 10px;
+			}
+			.alert-dismissable .close, .alert-dismissible .close {
+				top: 5px;
+				right: 0px;
+			}
+			body{
+				background: url(<?php echo base_url(); ?>assets/images/background3.jpg) center bottom no-repeat;
+				background-size: cover;
+				background-attachment: fixed;
 			}
 		</style>
 		<!-- END THEME LAYOUT STYLES -->
@@ -103,7 +141,7 @@
 								<div class="hor-menu">
 									<ul class="nav navbar-nav">
 										<li class="<?php echo $controller == "home" ? 'active' : ''; ?>">
-											<a href="javascript:;">
+											<a href="<?php echo base_url(); ?>">
 												Home
 											</a>
 										</li>
@@ -149,14 +187,14 @@
 											<?php
 										}
 										else{ ?>
-											<li class="">
-												<a href="<?php echo base_url(); ?>user/register_form">
+											<li class="<?php echo $controller == "user" && $method == "registration_form" ? 'active' : ''; ?>">
+												<a href="<?php echo base_url(); ?>user/registration_form">
 													Sign Up
 												</a>
 											</li>
-											<li class="">
+											<li class="<?php echo $controller == "user" && $method == "login_form" ? 'active' : ''; ?>">
 												<a href="<?php echo base_url(); ?>user/login_form">
-													Login
+													Log In
 												</a>
 											</li><?php
 										} ?>
