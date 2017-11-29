@@ -9,7 +9,8 @@ class User_m extends CI_Model {
 			$db_user = array(
 				'name' => trim($post['name']),
 				'contact_no' => trim($post['contact_no']),
-				'email_address' => trim($post['email_address'])
+				'email_address' => trim($post['email_address']),
+				'user_type' => 'user'
 			);
 			
 			$error_msg = array();

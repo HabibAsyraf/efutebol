@@ -83,3 +83,17 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*
+|--------------------------------------------------------------------------
+| Auto Define
+|--------------------------------------------------------------------------
+*/
+define('DB_PREFIX', 'wsa_');
+define('PAGING_DEFAULT_LIMIT', 20);
+define('ADMIN_DEFAULT_PAGE', 'admin/login');
+define('UPLOAD_ROOT_PATH', './upload/');
+define('UPLOAD_ROOT_URL', 'upload/');
+if(!is_dir(UPLOAD_ROOT_PATH)){
+	mkdir(UPLOAD_ROOT_PATH, 0777, TRUE);
+}

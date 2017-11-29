@@ -113,19 +113,22 @@
 			.table-scrollable>.table-bordered>thead>tr:last-child>th, .table.table-bordered thead>tr>th {
 				text-align: center;
 			}
-			
 			.table-scrollable {
 				border-radius: 5px;
 			}
-			
 			@media (min-width: 1200px){
 				.container {
 					width: 1500px;
 				}
 			}
-			
 			.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 				padding: 5px;
+			}
+			.bg-black {
+				background: #000000!important;
+			}
+			.btn.dark:not(.btn-outline) {
+				background-color: #000000;
 			}
 		</style>
 		<!-- END THEME LAYOUT STYLES -->
@@ -156,64 +159,27 @@
 								<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
 								<div class="hor-menu">
 									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "home" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>">
-												Home
+										<li class="<?php echo $controller == "dashboard" ? 'active' : ''; ?>">
+											<a href="<?php echo base_url(); ?>admin">
+												Dashboard
 											</a>
 										</li>
 									</ul>
 									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "page" && $method == "futsal_court" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>page/futsal_court">
-												Futsal Court
-											</a>
-										</li>
-									</ul>
-									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "reservation" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>reservation/reservation_form">
-												Reservations
-											</a>
-										</li>
-									</ul>
-									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "page" && $method == "events" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>page/events">
-												Events
-											</a>
-										</li>
-									</ul>
-									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "page" && $method == "contact_us" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>page/contact_us">
-												Contact Us
+										<li class="<?php echo $controller == "user" ? 'active' : ''; ?>">
+											<a href="<?php echo base_url(); ?>admin/user">
+												User Management
 											</a>
 										</li>
 									</ul>
 								</div>
 								<div class="hor-menu" style="float: right;">
 									<ul class="nav navbar-nav">
-										<?php
-										if(isset($this->session->userdata('login_user')['logged_in']) && $this->session->userdata('login_user')['logged_in'] == TRUE){ ?>
-											<li class="">
-												<a href="<?php echo base_url(); ?>user/logout">
-													Logout
-												</a>
-											</li>
-											<?php
-										}
-										else{ ?>
-											<li class="<?php echo $controller == "user" && $method == "registration_form" ? 'active' : ''; ?>">
-												<a href="<?php echo base_url(); ?>user/registration_form">
-													Sign Up
-												</a>
-											</li>
-											<li class="<?php echo $controller == "user" && $method == "login_form" ? 'active' : ''; ?>">
-												<a href="<?php echo base_url(); ?>user/login_form">
-													Log In
-												</a>
-											</li><?php
-										} ?>
+										<li class="">
+											<a href="<?php echo base_url(); ?>admin/login/logout">
+												Logout
+											</a>
+										</li>
 									</ul>
 								</div>
 								<!-- END MEGA MENU -->

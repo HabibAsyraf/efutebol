@@ -14,14 +14,14 @@ class Login_m extends CI_Model {
 		if($post['password'] == ""){
 			$error_msg['password'] = "Please enter your Password";
 		}
-		
+		// ad($error_msg);ad($post); exit();
 		#If has error occured, return the error message back to the login page
 		if(sizeof($error_msg) > 0){
 			set_message(implode(" | ", $error_msg), "danger");
 			return $error_msg;
 		}
 		
-		$query_user = $this->db->query("SELECT * FROM `ef_user` WHERE `email_address` = " . $this->db->escape($post['email_address']) . " AND `password` = " . $this->db->escape(md5($post['password'])) . " AND `user_type` = 'user' LIMIT 1");
+		$query_user = $this->db->query("SELECT * FROM `ef_user` WHERE `email_address` = " . $this->db->escape($post['email_address']) . " AND `password` = " . $this->db->escape(md5($post['password'])) . " AND `user_type` IN ('admin', 'staff') LIMIT 1");
 		if($query_user->num_rows() > 0){
 			$row_user = $query_user->row();
 			$login_data = array(
@@ -30,7 +30,7 @@ class Login_m extends CI_Model {
 				'contact_no' => $row_user->contact_no,
 				'logged_in' => TRUE
 			);
-			$this->session->set_userdata('login_user', $login_data);
+			$this->session->set_userdata('login_admin', $login_data);
 			
 			return true;
 		}
