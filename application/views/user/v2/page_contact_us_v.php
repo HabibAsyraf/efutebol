@@ -8,6 +8,9 @@
 		padding: 15px 15px;
 		background: rgba(255, 255, 255, 0.9);
 	}
+	.c-content-contact-1 {
+		min-height: 545px;
+	}
 </style>
 <div class="c-content-contact-1 c-opt-1">
 	<div class="row" data-auto-height=".c-height">
