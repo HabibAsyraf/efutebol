@@ -27,7 +27,7 @@ class User_m extends CI_Model {
 		$where = "";
 		if(is_array($search_data) && sizeof($search_data) > 0){
 			if($search_data['search_user'] != ""){
-				$where .= ($where == "" ? " WHERE " : " AND ") . " `name` = " . $this->db->escape($search_data['search_user']);
+				$where .= ($where == "" ? " WHERE " : " AND ") . " `name` LIKE " . $this->db->escape("%".$search_data['search_user']."%");
 			}
 		}
 		
