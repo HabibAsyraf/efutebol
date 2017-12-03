@@ -25,6 +25,7 @@ class Login_m extends CI_Model {
 		if($query_user->num_rows() > 0){
 			$row_user = $query_user->row();
 			$login_data = array(
+				'user_id' => $row_user->user_id,
 				'name' => $row_user->name,
 				'email_address' => $row_user->email_address,
 				'contact_no' => $row_user->contact_no,

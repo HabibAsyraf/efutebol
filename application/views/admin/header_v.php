@@ -166,6 +166,13 @@
 										</li>
 									</ul>
 									<ul class="nav navbar-nav">
+										<li class="<?php echo $controller == "reservation" ? 'active' : ''; ?>">
+											<a href="<?php echo base_url(); ?>admin/reservation">
+												Reservation Management
+											</a>
+										</li>
+									</ul>
+									<ul class="nav navbar-nav">
 										<li class="<?php echo $controller == "user" ? 'active' : ''; ?>">
 											<a href="<?php echo base_url(); ?>admin/user">
 												User Management

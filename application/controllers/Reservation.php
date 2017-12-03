@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Reservation extends CI_Controller{
 	function __construct(){
 		parent::__construct();
+		
 		$this->load->model('user/booking_m');
+		$this->load->model('user/court_m');
+		$this->load->model('user/reservation_m');
 	}
 	
 	public function reservation_form(){
@@ -19,6 +22,8 @@ class Reservation extends CI_Controller{
 			}
 		}
 		
+		$data['query_court'] = $this->court_m->get_all();
+		
 		$data['meta_title'] = "Reservation Form";
 		$data['meta_tab_title'] = "Reservation Form";
 		$data['controller'] = "reservation";
@@ -27,40 +32,37 @@ class Reservation extends CI_Controller{
 		$this->load->view('user/v2/reservation_form_v', $data);
 	}
 	
-	public function booking_form($booking_data = ""){
-		if(!isset($this->session->userdata('login_user')['logged_in']) || $this->session->userdata('login_user')['logged_in'] == FALSE){
-			set_message("Please log in first");
-			redirect('user/login_form');
+	public function check_availability(){
+		if($this->input->is_ajax_request()){
+			$result = $this->reservation_m->check_availability($this->input->post());
+			
+			echo json_encode($result);
+			return;
 		}
 		
-		$booking_data = decrypt_data($booking_data);
-		if($booking_data == ""){
-			redirect($_SERVER['HTTP_REFERRER']);
-		}
-		
-		if($_POST){
-			$receipt_data = $this->booking_m->save_booking($this->input->post());
-			redirect('reservation/booking_receipt/' . encrypt_data($receipt_data));
-		}
-		
-		$data['meta_title'] = "Booking Form";
-		$data['booking_data'] = $booking_data;
-		$this->load->view('user/booking_form_v', $data);
+		exit("Please no direct access.");
 	}
 	
-	public function booking_receipt($receipt_data = ""){
-		if(!isset($this->session->userdata('login_user')['logged_in']) || $this->session->userdata('login_user')['logged_in'] == FALSE){
-			set_message("Please log in first");
-			redirect('user/login_form');
+	public function confirm(){
+		if($this->input->is_ajax_request()){
+			$result = $this->reservation_m->confirm_reservation($this->input->post());
+			
+			echo json_encode($result);
+			return;
 		}
 		
-		$receipt_data = decrypt_data($receipt_data);
-		if($receipt_data == ""){
-			redirect($_SERVER['HTTP_REFERRER']);
-		}
+		exit("Please no direct access.");
+	}
+	
+	public function receipt($info = ""){
+		$booking_id = base64url_decode($info);
+		$data['row_booking'] = $this->reservation_m->get_single($booking_id);
 		
-		$data['meta_title'] = "Booking Receipt";
-		$data['receipt_data'] = $receipt_data;
-		$this->load->view('user/booking_receipt_v', $data);
+		$data['meta_title'] = "Reservation Receipt";
+		$data['meta_tab_title'] = "Reservation Receipt";
+		$data['controller'] = "reservation";
+		$data['method'] = "receipt";
+		
+		$this->load->view('user/v2/reservation_receipt_v', $data);
 	}
 }
