@@ -27,7 +27,7 @@ class User_m extends CI_Model {
 		$where = "";
 		if(is_array($search_data) && sizeof($search_data) > 0){
 			if($search_data['search_user'] != ""){
-				$where .= ($where == "" ? " WHERE " : " AND ") . " `name` = " . $this->db->escape($search_data['search_user']);
+				$where .= ($where == "" ? " WHERE " : " AND ") . " `name` LIKE " . $this->db->escape("%".$search_data['search_user']."%");
 			}
 		}
 		
@@ -36,8 +36,17 @@ class User_m extends CI_Model {
 	
 	function delete_user($delete_data = array()){
 		if(is_array($delete_data) && sizeof($delete_data) > 0 && isset($delete_data['user_id'])){
-			set_message("Record has been deleted.", "success");
-			return true;
+			
+			if($this->session->userdata('login_admin')['user_id'] == $delete_data['user_id']){
+				set_message("Cannot delete our own account.", "danger");
+				return false;
+			}
+			else{
+				$this->db->query("DELETE FROM `ef_user` WHERE `user_id` = " . $this->db->escape($delete_data['user_id']));
+				
+				set_message("Record has been deleted.", "success");
+				return true;
+			}
 		}
 		
 		set_message("Invalid request. Please try again later.", "danger");
