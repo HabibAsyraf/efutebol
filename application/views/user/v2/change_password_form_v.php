@@ -4,38 +4,19 @@
 		<div class="portlet box green-hulk">
 			<div class="portlet-title">
 				<div class="caption">
-					Sign Up 
+					Change My Password
 				</div>
 			</div>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
-				<form action="" method="POST" class="form-register">
+				<form action="" method="POST" class="form-change">
 					<div class="form-body">
 						<?php get_message(); ?>
 						<div class="row">
 							<div class="col-md-offset-3 col-md-6">
-								<div class="form-group <?php echo isset($error_field['name']) ? 'has-error' : ''; ?>">
-									<label class="control-label"> Name <span class="required bold">*</span></label>
-									<input autocomplete="off" type="text" class="form-control input-sm name" name="name" value="<?php echo isset($user_reg->name) ? $user_reg->name : ''; ?>">
-									<span class="help-block small"> </span>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-offset-3 col-md-6">
-								<div class="form-group <?php echo isset($error_field['contact_no']) ? 'has-error' : ''; ?>">
-									<label class="control-label"> Contact No. <span class="required bold">*</span></label>
-									<input autocomplete="off" type="text" class="form-control input-sm contact_no" name="contact_no" value="<?php echo isset($user_reg->contact_no) ? $user_reg->contact_no : ''; ?>">
-									<span class="help-block small"> </span>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-offset-3 col-md-6">
-								<div class="form-group <?php echo isset($error_field['email_address']) ? 'has-error' : ''; ?>">
-									<label class="control-label"> Email Address <span class="required bold">*</span></label>
-									<input autocomplete="off" type="text" class="form-control input-sm email_address" name="email_address" value="<?php echo isset($user_reg->email_address) ? $user_reg->email_address : ''; ?>">
-									<span class="help-block small"> </span>
+								<div class="form-group <?php echo isset($error_field['current_password']) ? 'has-error' : ''; ?>">
+									<label class="control-label"> Current Password <span class="required bold">*</span></label>
+									<input autocomplete="off" type="password" class="form-control input-sm current_password" name="current_password" value="<?php echo isset($user_reg->current_password) ? $user_reg->current_password : ''; ?>">
 								</div>
 							</div>
 						</div>
@@ -55,12 +36,6 @@
 									<input autocomplete="off" type="password" class="form-control input-sm confirm_password" name="confirm_password" value="<?php echo isset($user_reg->confirm_password) ? $user_reg->confirm_password : ''; ?>">
 									<span class="help-block small"> Password length must be 6 character </span>
 								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-offset-3 col-md-6">
-								<br/>
-								Already have a eFutebol account? <a href="<?php echo base_url(); ?>user/login_form">Log In Now</a>
 							</div>
 						</div>
 					</div>
@@ -88,7 +63,7 @@
 <!-- BEGIN CUSTOM SCRIPTS -->
 <script type="text/javascript">
 	$(function(){
-		$('.form-register').on('submit', function(){
+		$('.form-change').on('submit', function(){
 			$('.loading-overlay').show();
 		});
 	})

@@ -232,68 +232,67 @@ function queue_email($to, $subject, $body, $login_type = "login_admin_id", $atta
 	}
 }
 
-function sendmail(){
-	require 'phpmailer/PHPMailerAutoload.php';
-	
-	$CI =& get_instance();
-	$sql = "SELECT * FROM `wsa_email_queue` WHERE `status` = '1'";
-	$query = $CI->db->query($sql);
-	
-	if($query->num_rows() > 0){
-		foreach ($query->result() as $row){
-			$id = $row->id;
-			$to = $row->email_to;
-			$subject = $row->subject;
-			$addr = explode(',',$to);
-			$mail = new PHPMailer();
-			
-			foreach ($addr as $ad){
-				$mail->AddAddress(trim($ad));
-			}
-			
-			//$mail->SMTPDebug = 4;
-			$mail->IsSMTP();
-			$mail->SMTPAuth   = true;                  // enable SMTP authentication
-			$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-			$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-			$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
-			
-			$mail->Username   = "hello@westyleasia.com";  // GMAIL username
-			$mail->Password   = "hellowsa2017";            // GMAIL password
-			
-			$mail->From       = "hello@westyleasia.com";
-			$mail->FromName   = "We Style Asia";
-			
-			$mail->Subject    = $subject;
-			
-			// $mail->Body       = "<div style=\"color: black\">THIS IS A SYSTEM GENERATED NOTIFICATION. PLEASE <b>DO NOT REPLY</b>. <br /><br />" . $row->body . "</div>"; //HTML Body
-			$mail->Body       = "<div style=\"color: black\">" . $row->body . "</div>"; //HTML Body
-			$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-			$mail->WordWrap   = 50; // set word wrap
-			$mail->CharSet    = "UTF-8";
-			$mail->MsgHTML($mail->Body);
-			
-			# Send Attachment
-			$sql = "SELECT * FROM `wsa_email_queue_attachment` WHERE `email_id` = " . $CI->db->escape($id);
-			$query = $CI->db->query($sql);
-			foreach($query->result() as $row_attachment){
-				if(file_exists($row_attachment->attachment_link)){
-					$file = $row_attachment->attachment_link;
-					$binary_content = file_get_contents($file);
-					$mail->AddStringAttachment($binary_content, $row_attachment->name . ($row_attachment->attachment_type == "" ? ".pdf" : ""), $encoding = 'base64', $type = $row_attachment->attachment_type != "" ? $row_attachment->attachment_type : 'application/pdf');
-				}
-			}
-			
-			$mail->IsHTML(true); // send as HTML
-			$result = $mail->Send();
-			if(!$result){
-				// $mail->ErrorInfo;
-			}
-			else{
-				$sql = "UPDATE `wsa_email_queue` SET status = '0' WHERE `id` = " . $CI->db->escape($id) . " ";
-				$query = $CI->db->query($sql);
-			}
+function sendmail($email_data = array('email_address' => '', 'subject' => '', 'body' => '')){
+	if(is_array($email_data) && sizeof($email_data) > 0 && isset($email_data['email_address']) && $email_data['email_address'] != '' && isset($email_data['subject']) && $email_data['subject'] != '' && isset($email_data['body']) && $email_data['body'] != '' ){
+		require 'phpmailer/PHPMailerAutoload.php';
+		$CI =& get_instance();
+		$mail = new PHPMailer();
+		
+		$mail->AddAddress(trim($email_data['email_address']));
+		
+		$mail->IsSMTP();
+		$mail->SMTPAuth   = true;                  // enable SMTP authentication
+		$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+		$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+		$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+		
+		$mail->Username   = "helloefutebol@gmail.com";  // GMAIL username
+		$mail->Password   = "h3ll01234";                // GMAIL password
+		
+		$mail->From       = "helloefutebol@gmail.com";
+		$mail->FromName   = "eFutebol";
+		
+		$mail->Subject    = $email_data['subject'];
+		
+		$mail->Body       = "<div style=\"color: black\">" . $email_data['body'] . "</div>"; //HTML Body
+		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+		$mail->WordWrap   = 50; // set word wrap
+		$mail->CharSet    = "UTF-8";
+		$mail->MsgHTML($mail->Body);
+		
+		if(!$mail->Send()) {
+			$db_email = array(
+				'email_address' => $email_data['email_address'],
+				'subject' => $email_data['subject'],
+				'body' => $email_data['body'],
+				'remarks' => $mail->ErrorInfo,
+				'status' => 'Failed'
+			);
+			$CI->db->insert('ef_email_history', $db_email);
+			return false;
 		}
+		else{
+			$db_email = array(
+				'email_address' => $email_data['email_address'],
+				'subject' => $email_data['subject'],
+				'body' => $email_data['body'],
+				'remarks' => 'Email has been sent.',
+				'status' => 'Success'
+			);
+			$CI->db->insert('ef_email_history', $db_email);
+			return true;
+		}
+	}
+	else{
+		$db_email = array(
+			'email_address' => isset($email_data['email_address']) ? $email_data['email_address'] : '',
+			'subject' => isset($email_data['subject']) ? $email_data['subject'] : '',
+			'body' => isset($email_data['body']) ? $email_data['body'] : '',
+			'remarks' => 'Email data is not complete',
+			'status' => 'Failed'
+		);
+		$CI->db->insert('ef_email_history', $db_email);
+		return false;
 	}
 }
 

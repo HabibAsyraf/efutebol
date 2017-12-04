@@ -28,6 +28,9 @@
 				</div>
 			</div>
 		</div>
+		<?php
+		// $this->load->view('public/loading_overlay_v');
+		?>
 		<!--[if lt IE 9]>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/respond.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/excanvas.min.js"></script> 

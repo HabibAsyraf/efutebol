@@ -196,6 +196,11 @@
 									<ul class="nav navbar-nav">
 										<?php
 										if(isset($this->session->userdata('login_user')['logged_in']) && $this->session->userdata('login_user')['logged_in'] == TRUE){ ?>
+											<li class="<?php echo $controller == "user" && $method == "change_password" ? 'active' : ''; ?>">
+												<a href="<?php echo base_url(); ?>user/change_password">
+													Change Password
+												</a>
+											</li>
 											<li class="">
 												<a href="<?php echo base_url(); ?>user/logout">
 													Logout

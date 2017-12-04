@@ -29,6 +29,7 @@ class Login_m extends CI_Model {
 				'name' => $row_user->name,
 				'email_address' => $row_user->email_address,
 				'contact_no' => $row_user->contact_no,
+				'user_type' => $row_user->user_type,
 				'logged_in' => TRUE
 			);
 			$this->session->set_userdata('login_user', $login_data);

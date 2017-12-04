@@ -4,45 +4,35 @@
 		<div class="portlet box green-hulk">
 			<div class="portlet-title">
 				<div class="caption">
-					Log In 
+					Forgot Password
 				</div>
 			</div>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
-				<form action="" method="POST" class="form-login">
+				<form action="" method="POST" class="form-reset">
 					<div class="form-body">
 						<?php get_message(); ?>
 						<div class="row">
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group <?php echo isset($error_field['email_address']) ? 'has-error' : ''; ?>">
 									<label class="control-label"> Email Address <span class="required bold">*</span></label>
-									<input autocomplete="off" type="text" class="form-control input-sm email_address" name="email_address" value="<?php echo isset($user_log->email_address) ? $user_log->email_address : ''; ?>">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-offset-3 col-md-6">
-								<div class="form-group <?php echo isset($error_field['password']) ? 'has-error' : ''; ?>">
-									<label class="control-label"> Password <span class="required bold">*</span></label>
-									<input autocomplete="off" type="password" class="form-control input-sm password" name="password" value="<?php echo isset($user_log->password) ? $user_log->password : ''; ?>">
+									<input autocomplete="off" type="text" class="form-control input-sm email_address" name="email_address" value="<?php echo isset($user_reg->email_address) ? $user_reg->email_address : ''; ?>">
+									<span class="help-block small"> </span>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-offset-3 col-md-6">
 								<br/>
-								Forgot your password? Dont worry, click <a href="<?php echo base_url(); ?>user/forgot_password">here</a> to reset your password
-								<br/>
-								<br/>
-								Doesn't has eFutebol account? <a href="<?php echo base_url(); ?>user/registration_form">Sign Up Now</a>
+								Already have a eFutebol account? <a href="<?php echo base_url(); ?>user/login_form">Log In Now</a>
 							</div>
 						</div>
 					</div>
 					<div class="form-actions fluid">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<button type="submit" class="btn green-hulk">Log In</button>
-								<a href="<?php echo base_url(); ?>user/login_form" class="btn btn-default">Reset</a>
+								<button type="submit" class="btn green-hulk">Submit</button>
+								<a href="<?php echo base_url(); ?>user/forgot_password" class="btn btn-default">Reset</a>
 							</div>
 						</div>
 					</div>
@@ -62,7 +52,7 @@
 <!-- BEGIN CUSTOM SCRIPTS -->
 <script type="text/javascript">
 	$(function(){
-		$('.form-login').on('submit', function(){
+		$('.form-reset').on('submit', function(){
 			$('.loading-overlay').show();
 		});
 	})

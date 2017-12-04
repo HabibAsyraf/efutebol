@@ -202,8 +202,9 @@
 			method: "POST",
 			data: $('.form-check').serialize(),
 			dataType: 'json',
-			async: false,
+			// async: false,
 			success: function(result){
+				$('.loading-overlay').hide();
 				if(result['result'] == "failed"){
 					$('.modal-alert').find('.modal-body').html(result['message']);
 					$('.modal-alert').modal('show');
@@ -224,11 +225,12 @@
 	}
 	
 	var checkLogin = function(){
+		$('.loading-overlay').show();
 		$.ajax({
 			url: baseUrl + 'user/check_login',
 			method: "POST",
 			dataType: 'json',
-			async: false,
+			// async: false,
 			success: function(result){
 				if(result['result'] == "failed"){
 					location.href = baseUrl + 'user/login_form/' + result['back_to'];
@@ -267,15 +269,17 @@
 		$('.btn-confirm-booking').on('click', function(){
 			$('.form-confirm-booking').ajaxSubmit({
 				dataType: 'json',
-				async: false,
+				// async: false,
 				beforeSend: function(){
-					
+					$('.loading-overlay').show();
 				},
 				error: function(){
+					$('.loading-overlay').hide();
 					$('.modal-booking').find('.div-error-msg').html(msgParser());
 				},
 				success: function(result){
 					if(result['result'] == "failed"){
+						$('.loading-overlay').hide();
 						$('.modal-booking').find('.div-error-msg').html(msgParser(result['message']));
 					}
 					else{

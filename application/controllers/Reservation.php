@@ -55,6 +55,11 @@ class Reservation extends CI_Controller{
 	}
 	
 	public function receipt($info = ""){
+		if(!isset($this->session->userdata('login_user')['logged_in']) || $this->session->userdata('login_user')['logged_in'] == FALSE){
+			set_message("Please login first.", "danger");
+			redirect('user/login_form/' . base64url_encode('reservation/receipt/' . $info));
+		}
+		
 		$booking_id = base64url_decode($info);
 		$data['row_booking'] = $this->reservation_m->get_single($booking_id);
 		
