@@ -5,7 +5,12 @@ class User extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		if(!isset($this->session->userdata('login_admin')['logged_in']) || !$this->session->userdata('login_admin')['logged_in']){
-			redirect('admin/login/logout');
+			if(!$this->input->is_ajax_request())
+				redirect('admin/login/logout');
+		}
+		
+		if(!in_array(strtolower($this->uri->segment(3)), array("check_login", "change_password")) && $this->session->userdata('login_admin')['user_type'] == 'staff'){
+			redirect('admin');
 		}
 		
 		$this->load->model('admin/user_m');
@@ -86,5 +91,39 @@ class User extends CI_Controller{
 		$data['method'] = "form";
 		
 		$this->load->view('admin/user_form_v', $data);
+	}
+	
+	public function check_login(){
+		if(!$this->input->is_ajax_request()){
+			exit("Please no direct access.");
+		}
+		
+		$data = array('result' => 'success');
+		if(!isset($this->session->userdata('login_admin')['logged_in']) || $this->session->userdata('login_admin')['logged_in'] == FALSE){
+			set_message("Seesion has been expired", "danger");
+			$data = array('result' => 'failed');
+		}
+		
+		echo json_encode($data);
+		return;
+	}
+	
+	public function change_password(){
+		if($_POST){
+			$result = $this->user_m->change_password($this->input->post());
+			if($result === true){
+				redirect('admin/user/change_password');
+			}
+			
+			$data['user_reg'] = (object)$_POST;
+			$data['error_field'] = $result;
+		}
+		
+		$data['meta_title'] = "Change Password";
+		$data['meta_tab_title'] = "Change Password";
+		$data['controller'] = "user";
+		$data['method'] = "change_password";
+		
+		$this->load->view('admin/change_password_form_v', $data);
 	}
 }

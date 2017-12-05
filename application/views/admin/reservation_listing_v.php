@@ -3,6 +3,12 @@
 	.alert, .thumbnail {
 		margin: 10px 0;
 	}
+	.bg-today{
+		background: #ffff85!important;
+	}
+	.table-hover>tbody>tr.bg-today:hover, .table-hover>tbody>tr.bg-today:hover>td{
+		background: #ffffdb!important;
+	}
 </style>
 <div class="row">
 	<div class="col-md-12">
@@ -10,6 +16,11 @@
 			<div class="portlet-title">
 				<div class="caption">
 					Reservation Listing
+				</div>
+				<div class="actions">
+					<a href="<?php echo base_url(); ?>admin/reservation/form" class="btn btn-default btn-sm">
+						Add Walk In Reservation
+					</a>
 				</div>
 			</div>
 			<div class="portlet-body">
@@ -33,12 +44,13 @@
 							<tr class="bg-black font-white">
 								<th style="width: 1%;"> # </th>
 								<th style="width: 1%;"> Booking ID </th>
-								<th class="col-md-3"> Name </th>
+								<th class="col-md-2"> Name </th>
 								<th class="col-md-1"> Contact No. </th>
 								<th class="col-md-5"> Reserved Date </th>
 								<th class="col-md-1"> Amount </th>
 								<th class="col-md-1"> Duration </th>
 								<th class="col-md-1"> Court </th>
+								<th class="col-md-1"> Booking Type </th>
 								<th style="width: 1%; min-width: 120px" > Action </th>
 							</tr>
 						</thead>
@@ -47,7 +59,7 @@
 							if(isset($query_booking) && $query_booking->num_rows() > 0){
 								$count = 1 + $this->uri->segment(5);
 								foreach($query_booking->result() as $row_booking){ ?>
-									<tr>
+									<tr class="<?php echo date("Ymd", strtotime($row_booking->booking_date_time)) == date("Ymd") || (date("Ymd", strtotime($row_booking->booking_date_time)) == date("Ymd", strtotime(date("Y-m-d H:i:s") . ' +1 day')) && strtotime(date("H:i", strtotime($row_booking->booking_date_time))) < strtotime("03:00")) ? 'bg-today' : ''; ?>">
 										<td class="text-center"> <?php echo $count++; ?> </td>
 										<td class="text-center"> <?php echo str_pad($row_booking->booking_id, 4, '0', STR_PAD_LEFT); ?> </td>
 										<td class=""> <?php echo $row_booking->name; ?> </td>
@@ -56,6 +68,7 @@
 										<td class="text-right"> <?php echo 'RM ' . number_format($row_booking->amount, 2, ".", ""); ?> </td>
 										<td class="text-center"> <?php echo $row_booking->duration . ' ' . ($row_booking->duration > 1 ? 'Hours' : 'Hour'); ?> </td>
 										<td class="text-center"> <?php echo $row_booking->court_name; ?> </td>
+										<td class="text-center"> <?php echo $row_booking->booking_method; ?> </td>
 										<td class="text-center bold <?php echo $status_color[$row_booking->status]; ?>">
 											<?php
 											if($row_booking->status == "B"){ ?>

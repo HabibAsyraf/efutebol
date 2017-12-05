@@ -17,6 +17,7 @@
 		<!-- BEGIN PAGE LEVEL PLUGINS -->
 		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
@@ -172,16 +173,24 @@
 											</a>
 										</li>
 									</ul>
-									<ul class="nav navbar-nav">
-										<li class="<?php echo $controller == "user" ? 'active' : ''; ?>">
-											<a href="<?php echo base_url(); ?>admin/user">
-												User Management
-											</a>
-										</li>
-									</ul>
+									<?php
+									if($this->session->userdata('login_admin')['user_type'] == 'admin'){ ?>
+										<ul class="nav navbar-nav">
+											<li class="<?php echo $controller == "user" ? 'active' : ''; ?>">
+												<a href="<?php echo base_url(); ?>admin/user">
+													User Management
+												</a>
+											</li>
+										</ul><?php
+									} ?>
 								</div>
 								<div class="hor-menu" style="float: right;">
 									<ul class="nav navbar-nav">
+										<li class="<?php echo $controller == "user" && $method == "change_password" ? 'active' : ''; ?>">
+											<a href="<?php echo base_url(); ?>admin/user/change_password">
+												Change Password
+											</a>
+										</li>
 										<li class="">
 											<a href="<?php echo base_url(); ?>admin/login/logout">
 												Logout
