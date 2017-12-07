@@ -232,9 +232,11 @@ function queue_email($to, $subject, $body, $login_type = "login_admin_id", $atta
 	}
 }
 
-function sendmail($email_data = array('email_address' => '', 'subject' => '', 'body' => '')){
+function sendmail($email_data = array('email_address' => '', 'subject' => '', 'body' => ''), $initiate_mailer = true){
 	if(is_array($email_data) && sizeof($email_data) > 0 && isset($email_data['email_address']) && $email_data['email_address'] != '' && isset($email_data['subject']) && $email_data['subject'] != '' && isset($email_data['body']) && $email_data['body'] != '' ){
-		require 'phpmailer/PHPMailerAutoload.php';
+		if($initiate_mailer)
+			require 'phpmailer/PHPMailerAutoload.php';
+		
 		$CI =& get_instance();
 		$mail = new PHPMailer();
 		
