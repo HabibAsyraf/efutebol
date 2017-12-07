@@ -52,7 +52,7 @@ for($i=0; $i<$tr; $i++)
 {
 	if($_POST["qty_".$i] != 0)
 	{
-		$total_price = $_POST['total_'.$i];
+		$total_price = $_POST['total_'.$i] + $total_price;
 	}
 }
 
