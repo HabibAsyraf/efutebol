@@ -11,6 +11,7 @@ class Reservation extends CI_Controller{
 		}
 		
 		$this->load->model('admin/reservation_m');
+		$this->load->model('user/court_m');
 		
 		if(strtolower($this->uri->segment(3)) == "listing" && $_POST){
 			$encrypted_data = base64url_encode(serialize($this->input->post()));
@@ -81,27 +82,35 @@ class Reservation extends CI_Controller{
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
-	public function form($info = ""){
-		$user_id = base64url_decode($info);
-		if($info != "" && is_numeric($user_id) && $user_id > 0){
-			$data['row_user'] = $this->reservation_m->get_single_user($user_id);
-		}
-		else if($info != ""){
-			set_message("Invalid request. Please try again later.", "danger");
-			redirect($_SERVER['HTTP_REFERER']);
-		}
-		
-		if($_POST){
-			$result = $this->reservation_m->save_user($this->input->post());
-			$data['row_user'] = (object)$_POST;
-			$data['error_field'] = $result;
-		}
-		// ad($data['row_user']); exit();
+	public function form(){
+		$data['query_court'] = $this->court_m->get_all();
 		$data['meta_title'] = "Reservation Form";
 		$data['meta_tab_title'] = "Reservation Form";
 		$data['controller'] = "reservation";
 		$data['method'] = "form";
 		
-		$this->load->view('admin/user_form_v', $data);
+		$this->load->view('admin/reservation_form_v', $data);
+	}
+	
+	public function check_availability(){
+		if($this->input->is_ajax_request()){
+			$result = $this->reservation_m->check_availability($this->input->post());
+			
+			echo json_encode($result);
+			return;
+		}
+		
+		exit("Please no direct access.");
+	}
+	
+	public function confirm(){
+		if($this->input->is_ajax_request()){
+			$result = $this->reservation_m->confirm_reservation($this->input->post());
+			
+			echo json_encode($result);
+			return;
+		}
+		
+		exit("Please no direct access.");
 	}
 }

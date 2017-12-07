@@ -57,6 +57,7 @@
 									<select class="form-control input-sm user_type" name="user_type">
 										<option value=""></option>
 										<option value="admin" <?php echo isset($row_user->user_type) && $row_user->user_type == "admin" ? 'selected="selected"' : ''; ?>>Admin</option>
+										<option value="staff" <?php echo isset($row_user->user_type) && $row_user->user_type == "staff" ? 'selected="selected"' : ''; ?>>Staff</option>
 										<option value="user" <?php echo isset($row_user->user_type) && $row_user->user_type == "user" ? 'selected="selected"' : ''; ?>>User</option>
 									</select>
 									<span class="help-block small"> </span>
@@ -88,7 +89,9 @@
 <!-- BEGIN CUSTOM SCRIPTS -->
 <script type="text/javascript">
 	$(function(){
-		
+		$('.form-register').on('submit', function(){
+			$('.loading-overlay').show();
+		});
 	})
 </script>
 <!-- END CUSTOM SCRIPTS -->
