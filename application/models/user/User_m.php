@@ -166,7 +166,7 @@ class User_m extends CI_Model {
 				$plain_pwd = uniqid();
 				$this->db->where('user_id', $row_chk->user_id);
 				$this->db->update('ef_user', array('password' => md5($plain_pwd)));
-				set_message("Password has been reset. Please open your email to continue.", "success");
+				set_message("Password has been reset. Please check your email inbox to continue.", "success");
 				
 				//Sending email to user
 				$email_data['email_address'] = $row_chk->email_address;

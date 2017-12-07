@@ -30,6 +30,25 @@ class Login extends CI_Controller{
 		$this->load->view('admin/login_form_v', $data);
 	}
 	
+	public function forgot_password(){
+		if($_POST){
+			$result = $this->login_m->forgot_password($this->input->post());
+			if($result === true){
+				redirect('admin/login/forgot_password');
+			}
+			
+			$data['user_log'] = (object)$_POST;
+			$data['error_field'] = $result;
+		}
+		
+		$data['meta_title'] = "Administrator Forgot Password";
+		$data['meta_tab_title'] = "Administrator Forgot Password";
+		$data['controller'] = "login";
+		$data['method'] = "forgot_password";
+		
+		$this->load->view('admin/forgot_password_form_v', $data);
+	}
+	
 	public function logout(){
 		$this->session->unset_userdata('login_admin');
 		

@@ -7,10 +7,10 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8" />
-		<title> Administrator | Login </title>
+		<title> Administrator | Forgot Password </title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="Administrator | Login" name="description" />
+		<meta content="Administrator | Forgot Password " name="description" />
 		<meta content="" name="author" />
 		<!-- BEGIN GLOBAL MANDATORY STYLES -->
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
@@ -58,71 +58,24 @@
 		<!-- END LOGO -->
 		<!-- BEGIN LOGIN -->
 		<div class="content">
-			<!-- BEGIN LOGIN FORM -->
-			<form class="login-form" action="" method="post">
-				<h3 class="form-title font-dark">Administrator Login</h3>
+			<!-- BEGIN FORGOT PASSWORD FORM -->
+			<form class="form-forgot-password" action="" method="post">
+				<h3 class="font-dark">Forgot Password ?</h3>
+				<p> Enter your e-mail address below to reset your password. </p>
 				<?php get_message(); ?>
 				<div class="form-group <?php echo isset($error_field['email_address']) ? 'has-error' : ''; ?>">
 					<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 					<label class="control-label visible-ie8 visible-ie9">Email Address</label>
 					<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email Address" name="email_address" value="<?php echo isset($user_log->email_address) ? $user_log->email_address : ''; ?>" />
 				</div>
-				<div class="form-group <?php echo isset($error_field['password']) ? 'has-error' : ''; ?>">
-					<label class="control-label visible-ie8 visible-ie9">Password</label>
-					<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo isset($user_log->password) ? $user_log->password : ''; ?>" />
-				</div>
-				
-				<div class="form-actions text-center">
-					<button type="submit" style="float: left;" class="btn green uppercase">Login</button> 
-					<span style="position: absolute; bottom: 115px; left: 140px;">OR</span> 
-					<a href="<?php echo base_url(); ?>" style="float: right;" class="btn red uppercase">Back To Front End</a>
-					<br/>
-					<br/>
-					<hr/>
-					<p style="margin: 0; text-align: left;">
-						<b>Forgot your password?</b>
-						<br/>
-						Dont worry, click <a class="btn- btn-link" href="<?php echo base_url(); ?>admin/login/forgot_password">here</a> to reset your password.
-					</p>
-				</div>
-				
-				<div class="login-options" hidden>
-					<h4>Or login with</h4>
-					<ul class="social-icons">
-						<li>
-							<a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
-						</li>
-						<li>
-							<a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>
-						</li>
-						<li>
-							<a class="social-icon-color googleplus" data-original-title="Goole Plus" href="javascript:;"></a>
-						</li>
-						<li>
-							<a class="social-icon-color linkedin" data-original-title="Linkedin" href="javascript:;"></a>
-						</li>
-					</ul>
-				</div>
-				<div class="create-account" hidden>
-					<p>
-						<a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
-					</p>
-				</div>
-			</form>
-			<!-- END LOGIN FORM -->
-			<!-- BEGIN FORGOT PASSWORD FORM -->
-			<form class="forget-form" action="index.html" method="post">
-				<h3 class="font-green">Forget Password ?</h3>
-				<p> Enter your e-mail address below to reset your password. </p>
-				<div class="form-group">
-					<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
 				<div class="form-actions">
-					<button type="button" id="back-btn" class="btn green btn-outline">Back</button>
+					<a class="btn green btn-outline" href="<?php echo base_url(); ?>admin/login">Back</a>
 					<button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
 				</div>
 			</form>
 			<!-- END FORGOT PASSWORD FORM -->
 		</div>
+		<?php $this->load->view('public/loading_overlay_v'); ?>
 		<!--[if lt IE 9]>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/respond.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/global/plugins/excanvas.min.js"></script> 
@@ -147,13 +100,11 @@
 		<!-- BEGIN THEME LAYOUT SCRIPTS -->
 		<!-- END THEME LAYOUT SCRIPTS -->
 		<script>
-			$(document).ready(function()
-			{
-				$('#clickmewow').click(function()
-				{
-					$('#radio1003').attr('checked', 'checked');
+			$(function(){
+				$('.form-forgot-password').on('submit', function(){
+					$('.loading-overlay').show();
 				});
-			})
+			});
 		</script>
 	</body>
 	<?php

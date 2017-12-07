@@ -40,6 +40,50 @@ class Login_m extends CI_Model {
 		set_message("Wrong email or password", "danger");
 		return false;
 	}
+	
+	function forgot_password($post = array()){
+		if(is_array($post) && sizeof($post) > 0 && isset($post['email_address'])){
+			$error_msg = array();
+			if($post['email_address'] == ""){
+				$error_msg['email_address'] = "Please enter your email address";
+			}
+			if(sizeof($error_msg) > 0){
+				set_message(implode(" | ", $error_msg), "danger");
+				return $error_msg;
+			}
+			
+			$query_chk = $this->db->query("SELECT * FROM `ef_user` WHERE `email_address` = " . $this->db->escape($post['email_address']) . " AND `user_type` != 'user'");
+			if($query_chk->num_rows() > 0){
+				$row_chk = $query_chk->row();
+				
+				//Generate random password
+				$plain_pwd = uniqid();
+				$this->db->where('user_id', $row_chk->user_id);
+				$this->db->update('ef_user', array('password' => md5($plain_pwd)));
+				set_message("Password has been reset. Please check your email inbox to continue.", "success");
+				
+				//Sending email to admin/staff
+				$email_data['email_address'] = $row_chk->email_address;
+				$email_data['subject'] = 'eFutebol Account Reset Password';
+				$email_data['body'] = 'Dear ' . $row_chk->name . ',<br/><br/>'.
+									  'Here is your new password : ' . $plain_pwd . '<br/><br/>'.
+									  'Hope you has a wonderful day ahead.<br/><br/><br/>'.
+									  'eFutebol.';
+				sendmail($email_data);
+				
+				return true;
+			}
+			else{
+				set_message("Email address doesn't exists.", "danger");
+				$error_msg['email_address'] = "Email address doesn't exists.";
+				
+				return $error_msg;
+			}
+		}
+		
+		set_message("Please try again later.", "danger");
+		return false;
+	}
 }
 
 ?>
