@@ -93,13 +93,8 @@ class Reservation_m extends CI_Model {
 			$email_data['subject'] = 'Reservation has been made (Reservation ID: ' . str_pad(base64url_decode($result['booking_id']), 4, "0", STR_PAD_LEFT) . ')';
 			$email_data['body'] = 'Dear eFutebol,<br/><br/>'.
 								  'Reservation has been made by ' . $this->session->userdata('login_user')['name'] . '.<br/><br/>'.
-<<<<<<< HEAD
-								  'See Details: <a href="'.base_url().'/admin/reservation">'.base_url().'/admin/reservation</a>';
-			sendmail($email_data, false);
-=======
 								  'See Details: <a href="'.base_url().'admin/reservation">'.base_url().'admin/reservation</a>';
-			sendmail($email_data);
->>>>>>> 83232756f16773c36bb1da11726088c419e99328
+			sendmail($email_data, false);
 			
 			set_message("Booking has been confirmed. Please show this receipt at the counter. See you soon.", "success");
 		}
