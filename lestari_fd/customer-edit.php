@@ -32,7 +32,7 @@
 				
 			}
 	?>
-
+	
 	<br><br><br>
 	<center><h1 style="color:black">Edit Menu</h1><br>
 	<center><form method="post" action="customer-edit.php">

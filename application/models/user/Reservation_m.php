@@ -8,17 +8,17 @@ class Reservation_m extends CI_Model {
 		$result = array('result' => "failed", 'message' => 'Error has been occured. Please try again later.');
 		if(is_array($post) && sizeof($post) > 0){
 			$end_time = date("H:i", strtotime($post['booking_time'] . ' +'.$post['duration'] . ' hour'));
+			$booking_date_time = date("Y-m-d", strtotime(datepicker2mysql($post['booking_date']))) . ' ' . $post['booking_time'].':00';
+			$booking_date_time_end = date("Y-m-d H:i:s", strtotime($booking_date_time . ' +'.$post['duration'] . ' hour'));
+			
 			if((strtotime($post['booking_time']) >= strtotime("03:00") && strtotime($post['booking_time']) < strtotime("08:00")) || 
 			(strtotime($end_time) > strtotime("03:00") && strtotime($end_time) < strtotime("08:00"))){
 				$result['message'] = "Court is unavailable. Operation hour is from 8:00 AM until 3:00 AM";
 			}
-			else if(date("Ymd", strtotime(datepicker2mysql($post['booking_date']))) == date("Ymd", strtotime(date("Y-m-d H:i:s") . ' +1 day')) && strtotime($post['booking_time']) >= strtotime("00:00") && strtotime($post['booking_time']) < strtotime("03:00")){
-				$result['message'] = "Court is unavailable for this midnight. Please change to another time or date.";
+			else if(strtotime($booking_date_time) < strtotime(date("Y-m-d H:i:s"))){
+				$result['message'] = "The time is already passed. Please choose another time.";
 			}
 			else{
-				$booking_date_time = date("Y-m-d", strtotime(datepicker2mysql($post['booking_date']))) . ' ' . $post['booking_time'].':00';
-				$booking_date_time_end = date("Y-m-d H:i:s", strtotime($booking_date_time . ' +'.$post['duration'] . ' hour'));
-				
 				$query_chk = $this->db->query("SELECT * FROM `ef_booking` "
 											. "WHERE `court_id` = " . $this->db->escape($post['court_id']) . " "
 											. "AND ((`booking_date_time` <= " . $this->db->escape($booking_date_time) . " AND `booking_date_time_end` > " . $this->db->escape($booking_date_time) . ") "

@@ -23,10 +23,15 @@
 								<div class="form-group">
 									<label class="control-label"> Booking Date <span class="required">*</span></label>
 									<div class="input-group">
-										<input type="text" name="booking_date" readonly="readonly" class="form-control input-sm date-picker booking_date" 
+										<?php /* <input type="text" name="booking_date" readonly="readonly" class="form-control input-sm date-picker booking_date" 
 										data-date-start-date="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>" 
 										data-date="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>" 
-										data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>">
+										data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>"> */ ?>
+										
+										<input type="text" name="booking_date" readonly="readonly" class="form-control input-sm date-picker booking_date" 
+										data-date-start-date="<?php echo date("d/m/Y"); ?>" 
+										data-date="<?php echo date("d/m/Y"); ?>" 
+										data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>">
 										
 										<span class="input-group-btn">
 											<button title="Pick a date" class="btn btn-sm green-hulk btn-show-calendar" type="button">
@@ -197,6 +202,7 @@
 <!-- BEGIN CUSTOM SCRIPTS -->
 <script type="text/javascript">
 	var checkAvailability = function(){
+		// Check 
 		$.ajax({
 			url: baseUrl + 'reservation/check_availability',
 			method: "POST",
@@ -225,17 +231,18 @@
 	}
 	
 	var checkLogin = function(){
-		$('.loading-overlay').show();
+		$('.loading-overlay').show(); // Untuk display loading overlay
 		$.ajax({
-			url: baseUrl + 'user/check_login',
-			method: "POST",
-			dataType: 'json',
+			url: baseUrl + 'user/check_login', //Pergi controller user, function check_login
+			method: "POST", 
+			dataType: 'json', // Data type yang kita na terima dri controller
 			// async: false,
 			success: function(result){
-				if(result['result'] == "failed"){
-					location.href = baseUrl + 'user/login_form/' + result['back_to'];
+				if(result['result'] == "failed"){ //Kalau failed
+					location.href = baseUrl + 'user/login_form/' + result['back_to']; //Pergi login page
 				}
 				else{
+					//Kalau result success, pergi check availability
 					checkAvailability();
 				}
 			}
@@ -261,6 +268,7 @@
 			}
 		});
 		
+		//Button untuk check availibility
 		$('.btn-check').on('click', function(){
 			checkLogin();
 		});

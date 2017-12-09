@@ -1,4 +1,6 @@
-<?php $this->load->view('user/v2/header_v'); ?>
+<?php 
+//Include header
+$this->load->view('user/v2/header_v'); ?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="portlet">
@@ -46,7 +48,9 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('user/v2/footer_v'); ?>
+<?php
+//Include la footer
+$this->load->view('user/v2/footer_v'); ?>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/pages/scripts/dashboard.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/anati-design/engine1/wowslider.js"></script>

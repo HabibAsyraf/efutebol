@@ -34,6 +34,8 @@
 		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url(); ?>assets/anati-design/engine1/style.css" rel="stylesheet" type="text/css" />
 		<style>
+			//Kat sini semua design yg custom made punya
+		
 			.page-wrapper .page-wrapper-middle {
 				background: unset;
 			}
@@ -119,12 +121,6 @@
 				border-radius: 5px;
 			}
 			
-			@media (min-width: 1200px){
-				.container {
-					width: 1500px;
-				}
-			}
-			
 			.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 				padding: 5px;
 			}
@@ -157,6 +153,20 @@
 								<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
 								<div class="hor-menu">
 									<ul class="nav navbar-nav">
+										<?php
+										//Cara panjang
+										/* if($controller == "home"){
+											echo "active";
+										}
+										else{
+											echo "";
+										} */
+										?>
+										<?php 
+										//Cara pendek
+										// echo $controller == "home" ? 'active' : ''; 
+										?>
+										
 										<li class="<?php echo $controller == "home" ? 'active' : ''; ?>">
 											<a href="<?php echo base_url(); ?>">
 												Home
