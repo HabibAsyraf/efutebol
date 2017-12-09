@@ -54,18 +54,18 @@
 <script type="text/javascript">
 	var map;
 	$(function(){
-		map = new GMaps({
+		map = new GMaps({  //guna plug in GMP, GOOGLE JE
 			div: '#gmapbg',
 			lat: 2.232243,
 			lng: 102.281861
 		});
 		
 		var marker = map.addMarker({
-			lat: 2.232243,
-			lng: 102.281861,
-			title: 'Efutebol Futsal Center',
+			lat: 2.232243, //latitude
+			lng: 102.281861, //longitude
+			title: 'Efutebol Futsal Center', //nama hover
 			infoWindow: {
-				content: "<b>Efutebol Futsal Center</b>"
+				content: "<b>Efutebol Futsal Center</b>" //nama kelar balloon kat location
 			}
 		});
 		

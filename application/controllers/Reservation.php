@@ -34,7 +34,7 @@ class Reservation extends CI_Controller{
 	
 	public function check_availability(){
 		if($this->input->is_ajax_request()){
-			$result = $this->reservation_m->check_availability($this->input->post());
+			$result = $this->reservation_m->check_availability($this->input->post()); //post ke model reservation_m
 			
 			echo json_encode($result);
 			return;

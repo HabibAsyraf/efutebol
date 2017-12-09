@@ -95,13 +95,14 @@ class User extends CI_Controller{
 		redirect('home');
 	}
 	
+	//ni background process
 	public function check_login(){
-		if(!$this->input->is_ajax_request()){
-			exit("Please no direct access.");
+		if(!$this->input->is_ajax_request()){ //1) check request ni daripada ajax ke tak
+			exit("Please no direct access."); //nak prevent dari orang direct access
 		}
 		
-		$data = array('result' => 'success');
-		if(!isset($this->session->userdata('login_user')['logged_in']) || $this->session->userdata('login_user')['logged_in'] == FALSE){
+		$data = array('result' => 'success'); // data yang di encode dalam bentuk json
+		if(!isset($this->session->userdata('login_user')['logged_in']) || $this->session->userdata('login_user')['logged_in'] == FALSE){  //check session login ke tak
 			set_message("Please login first before making any reservation.");
 			$data = array(
 				'result' => 'failed',
@@ -109,7 +110,7 @@ class User extends CI_Controller{
 			);
 		}
 		
-		echo json_encode($data);
-		return;
+		echo json_encode($data); 
+		return; //pergi view/v2/reservation/reservation_form
 	}
 }
