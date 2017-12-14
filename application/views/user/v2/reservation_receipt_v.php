@@ -129,8 +129,7 @@
 					<div class="form-actions fluid">
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<?php /* <a hred="javascript:;" class="btn green-hulk" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a> */ ?>
-								<a hred="javascript:;" class="" onclick="javascript:window.print();">Print</a>
+								<a hred="javascript:;" class="btn green-hulk" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
 							</div>
 						</div>
 					</div>
