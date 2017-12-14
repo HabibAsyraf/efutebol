@@ -108,7 +108,7 @@
 				top: 5px;
 				right: 0px;
 			}
-			body{
+			body, .page-wrapper .page-wrapper-middle {
 				background: url(<?php echo base_url(); ?>assets/images/background3.jpg) center bottom no-repeat;
 				background-size: cover;
 				background-attachment: fixed;
