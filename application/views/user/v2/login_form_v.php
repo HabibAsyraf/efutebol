@@ -12,7 +12,7 @@
 				<form action="" method="POST" class="form-login">
 					<div class="form-body">
 						<?php get_message(); ?>
-						<div class="row">
+						<?php /* <div class="row">
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group <?php echo isset($error_field['email_address']) ? 'has-error' : ''; ?>">
 									<label class="control-label"> Email Address <span class="required bold">*</span></label>
@@ -36,13 +36,40 @@
 								<br/>
 								Doesn't has eFutebol account? <a href="<?php echo base_url(); ?>user/registration_form">Sign Up Now</a>
 							</div>
+						</div> */ ?>
+						<div class="row">
+							<div class="col-md-offset-3 col-md-6">
+								<div class="form-group <?php echo isset($error_field['email_address']) ? 'has-error' : ''; ?>">
+									<label class="control-label"> Email Address <span class="required bold">*</span></label>
+									<input autocomplete="off" type="text" class="input-sm email_address" name="email_address" value="<?php echo isset($user_log->email_address) ? $user_log->email_address : ''; ?>">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-offset-3 col-md-6">
+								<div class="form-group <?php echo isset($error_field['password']) ? 'has-error' : ''; ?>">
+									<label class="control-label"> Password <span class="required bold">*</span></label>
+									<input autocomplete="off" type="password" class="input-sm password" name="password" value="<?php echo isset($user_log->password) ? $user_log->password : ''; ?>">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-offset-3 col-md-6">
+								<br/>
+								Forgot your password? Dont worry, click <a href="<?php echo base_url(); ?>user/forgot_password">here</a> to reset your password
+								<br/>
+								<br/>
+								Doesn't has eFutebol account? <a href="<?php echo base_url(); ?>user/registration_form">Sign Up Now</a>
+							</div>
 						</div>
 					</div>
 					<div class="form-actions fluid">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<button type="submit" class="btn green-hulk">Log In</button>
-								<a href="<?php echo base_url(); ?>user/login_form" class="btn btn-default">Reset</a>
+								<?php /* <button type="submit" class="btn green-hulk">Log In</button>
+								<a href="<?php echo base_url(); ?>user/login_form" class="btn btn-default">Reset</a> */ ?>
+								<button type="submit" class="">Log In</button>
+								<a href="<?php echo base_url(); ?>user/login_form" class="">Reset</a>
 							</div>
 						</div>
 					</div>

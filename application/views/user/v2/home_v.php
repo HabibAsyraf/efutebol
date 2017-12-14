@@ -41,7 +41,8 @@ $this->load->view('user/v2/header_v'); ?>
 						<h2 class="bold">Welcome To eFutebol(Futsal Court Reservation)</h2>
 						<h4 class="">Let's reserve for the pitch now while it still available!</h4>
 						<br/>
-						<a href="<?php echo base_url(); ?>reservation/reservation_form" class="btn btn-lg dark">Reserve Now</a>
+						<?php /* <a href="<?php echo base_url(); ?>reservation/reservation_form" class="btn btn-lg dark">Reserve Now</a> */ ?>
+						<a href="<?php echo base_url(); ?>reservation/reservation_form" class="">Reserve Now</a>
 					</div>
 				</div>
 			</div>

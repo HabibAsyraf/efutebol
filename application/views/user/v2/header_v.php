@@ -25,13 +25,13 @@
 		<link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
 		<!-- END PAGE LEVEL PLUGINS -->
 		<!-- BEGIN THEME GLOBAL STYLES -->
-		<link href="<?php echo base_url(); ?>assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
-		<link href="<?php echo base_url(); ?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+		<?php /* <link href="<?php echo base_url(); ?>assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+		<link href="<?php echo base_url(); ?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" /> */ ?>
 		<!-- END THEME GLOBAL STYLES -->
 		<!-- BEGIN THEME LAYOUT STYLES -->
 		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/themes/blue-hoki.min.css" rel="stylesheet" type="text/css" id="style_color" />
-		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
+		<?php /* <link href="<?php echo base_url(); ?>assets/layouts/layout3/css/themes/blue-hoki.min.css" rel="stylesheet" type="text/css" id="style_color" />
+		<link href="<?php echo base_url(); ?>assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" /> */ ?>
 		<link href="<?php echo base_url(); ?>assets/anati-design/engine1/style.css" rel="stylesheet" type="text/css" />
 		<style>
 			//Kat sini semua design yg custom made punya
@@ -123,6 +123,14 @@
 			
 			.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 				padding: 5px;
+			}
+			
+			/* Custom To Stupify this shit design */
+			.portlet.box.black>.portlet-title, .portlet.black, .portlet>.portlet-body.black{
+				background-color: white;
+			}
+			.portlet.box.green-hulk>.portlet-title, .portlet.green-hulk, .portlet>.portlet-body.green-hulk{
+				background-color: white;
 			}
 		</style>
 		<!-- END THEME LAYOUT STYLES -->
