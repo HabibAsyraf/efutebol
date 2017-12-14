@@ -11,8 +11,14 @@
 				<!-- BEGIN FORM-->
 				<form action="" method="POST" class="form-horizontal form-check">
 					<div class="form-body">
-						<?php get_message(); 
+						<?php 
+						// get_message(); 
 						if($row_booking !== false){ ?>
+							<div style="color: steelblue; font-weight: bold;" class="alert blink_me alert-success alert-dismissable">
+								Booking has been confirmed.<br/>
+								Please show this receipt at the counter.<br/>
+								See you soon.
+							</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group" style="margin-bottom: 0;">
@@ -123,7 +129,8 @@
 					<div class="form-actions fluid">
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<a hred="javascript:;" class="btn green-hulk" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
+								<?php /* <a hred="javascript:;" class="btn green-hulk" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a> */ ?>
+								<a hred="javascript:;" class="" onclick="javascript:window.print();">Print</a>
 							</div>
 						</div>
 					</div>

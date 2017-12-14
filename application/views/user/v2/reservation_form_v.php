@@ -27,12 +27,7 @@
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group">
 									<label class="control-label"> Booking Date <span class="required">*</span></label>
-									<div class="input-group">
-										<?php /* <input type="text" name="booking_date" readonly="readonly" class="form-control input-sm date-picker booking_date" 
-										data-date-start-date="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>" 
-										data-date="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>" 
-										data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y", strtotime(date("Y-m-d") . " +1 day")); ?>"> */ ?>
-										
+									<?php /* <div class="input-group">
 										<input type="text" name="booking_date" readonly="readonly" class="form-control input-sm date-picker booking_date" 
 										data-date-start-date="<?php echo date("d/m/Y"); ?>" 
 										data-date="<?php echo date("d/m/Y"); ?>" 
@@ -43,7 +38,11 @@
 												<i class="fa fa-calendar"></i>
 											</button>
 										</span>
-									</div>
+									</div> */ ?>
+									<input type="text" name="booking_date" readonly="readonly" class="input-sm date-picker booking_date" 
+									data-date-start-date="<?php echo date("d/m/Y"); ?>" 
+									data-date="<?php echo date("d/m/Y"); ?>" 
+									data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>">
 								</div>
 							</div>
 						</div>
@@ -52,7 +51,9 @@
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group">
 									<label class="control-label"> Booking Time <span class="required">*</span></label>
-									<input type="text" name="booking_time" class="booking_time form-control input-sm timepicker timepicker-default" style="background-color: #ffffff; cursor: pointer;"
+									<?php /* <input type="text" name="booking_time" class="booking_time form-control input-sm timepicker timepicker-default" style="background-color: #ffffff; cursor: pointer;"
+									value="<?php echo isset($monday_open_time) && $monday_open == "O" ? date("h:i A", strtotime($monday_open_time)) : ''; ?>" readonly> */ ?>
+									<input type="text" name="booking_time" class="booking_time input-sm timepicker timepicker-default" style="background-color: #ffffff; cursor: pointer;"
 									value="<?php echo isset($monday_open_time) && $monday_open == "O" ? date("h:i A", strtotime($monday_open_time)) : ''; ?>" readonly> 
 								</div>
 							</div>
@@ -62,7 +63,12 @@
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group">
 									<label class="control-label"> Duration <span class="required">*</span></label>
-									<select name="duration" class="form-control duration"> 
+									<?php /* <select name="duration" class="form-control duration"> 
+										<option value="1">1 Hour</option>
+										<option value="2">2 Hours</option>
+										<option value="3">3 Hours</option>
+									</select> */ ?>
+									<select name="duration" class="duration"> 
 										<option value="1">1 Hour</option>
 										<option value="2">2 Hours</option>
 										<option value="3">3 Hours</option>
@@ -75,7 +81,16 @@
 							<div class="col-md-offset-3 col-md-6">
 								<div class="form-group">
 									<label class="control-label"> Court Number <span class="required">*</span></label>
-									<select name="court_id" class="form-control court_id">
+									<?php /* <select name="court_id" class="form-control court_id">
+										<?php
+										if($query_court->num_rows() > 0){
+											foreach($query_court->result() as $row_court){ ?>
+												<option value="<?php echo $row_court->court_id; ?>"><?php echo $row_court->court_name; ?></option><?php
+											}
+										}
+										?>
+									</select>  */ ?>
+									<select name="court_id" class="court_id">
 										<?php
 										if($query_court->num_rows() > 0){
 											foreach($query_court->result() as $row_court){ ?>
@@ -92,8 +107,10 @@
 					<div class="form-actions fluid">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
-								<a hred="javascript:;" class="btn btn-check green-hulk">Check Availability</a>
-								<a href="<?php echo base_url(); ?>reservation/reservation_form" class="btn btn-default">Reset</a>
+								<?php /* <a hred="javascript:;" class="btn btn-check green-hulk">Check Availability</a>
+								<a href="<?php echo base_url(); ?>reservation/reservation_form" class="btn btn-default">Reset</a> */ ?>
+								<a hred="javascript:;" class="btn-check">Check Availability</a>
+								<a href="<?php echo base_url(); ?>reservation/reservation_form" class="">Reset</a>
 							</div>
 						</div>
 					</div>
@@ -114,7 +131,7 @@
 			<div class="form-body">
 				<div class="div-error-msg"></div>
 				<h3 class="form-section" style="margin: 0;">Reservation Info</h3>
-				<div class="row">
+				<?php /* <div class="row">
 					<div class="col-md-12">
 						<div class="form-group" style="margin-bottom: 0;">
 							<label class="control-label col-md-3 bold">Date:</label>
@@ -176,13 +193,78 @@
 							</div>
 						</div>
 					</div>
+				</div> */ ?>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" style="margin-bottom: 0;">
+							<label class="col-md-3 bold">Date:</label>
+							<div class="col-md-9">
+								<p class="booking_date">  </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" style="margin-bottom: 0;">
+							<label class="col-md-3 bold">Time:</label>
+							<div class="col-md-9">
+								<p class="booking_time"> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" style="margin-bottom: 0;">
+							<label class="col-md-3 bold">Duration:</label>
+							<div class="col-md-9">
+								<p class="duration">  </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" style="margin-bottom: 0;">
+							<label class="col-md-3 bold">Court Number:</label>
+							<div class="col-md-9">
+								<p class="court_name"> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" style="margin-bottom: 0;">
+							<label class="col-md-3 bold">Amount:</label>
+							<div class="col-md-9">
+								<p class="amount"> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-3 bold">Payment Method:</label>
+							<div class="col-md-9">
+								<select name="payment_method" class="payment_method"> 
+									<option value="Pay at Venue">Pay At Venue</option>
+									<option value="Pay Online" disabled>Pay Online(Unavailable)</option>
+								</select>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" data-dismiss="modal" class="btn btn-sm btn-outline dark btn-close-modal"> Close </button>
-		<button type="button" class="btn btn-sm dark btn-confirm-booking"> Confirm & Get My Receipt </button>
+		<?php /* <button type="button" data-dismiss="modal" class="btn btn-sm btn-outline dark btn-close-modal"> Close </button>
+		<button type="button" class="btn btn-sm dark btn-confirm-booking"> Confirm & Get My Receipt </button> */ ?>
+		<button type="button" data-dismiss="modal" class="btn-close-modal"> Close </button>
+		<button type="button" class="btn-confirm-booking"> Confirm & Get My Receipt </button>
 	</div>
 </div>
 <div class="modal fade modal-alert modal-overflow" tabindex="-1" data-width="900" data-backdrop="static" data-keyboard="false">
@@ -194,7 +276,8 @@
 		
 	</div>
 	<div class="modal-footer">
-		<button type="button" data-dismiss="modal" class="btn btn-sm btn-outline dark btn-close-modal"> Close </button>
+		<?php /* <button type="button" data-dismiss="modal" class="btn btn-sm btn-outline dark btn-close-modal"> Close </button> */ ?>
+		<button type="button" data-dismiss="modal" class="btn-close-modal"> Close </button>
 	</div>
 </div>
 <?php $this->load->view('user/v2/footer_v'); ?>

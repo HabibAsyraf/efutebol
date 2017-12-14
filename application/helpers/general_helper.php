@@ -268,6 +268,7 @@ function sendmail($email_data = array('email_address' => '', 'subject' => '', 'b
 				'subject' => $email_data['subject'],
 				'body' => $email_data['body'],
 				'remarks' => $mail->ErrorInfo,
+				'created_date' => date("Y-m-d H:i:s"),
 				'status' => 'Failed'
 			);
 			$CI->db->insert('ef_email_history', $db_email);
@@ -279,6 +280,7 @@ function sendmail($email_data = array('email_address' => '', 'subject' => '', 'b
 				'subject' => $email_data['subject'],
 				'body' => $email_data['body'],
 				'remarks' => 'Email has been sent.',
+				'created_date' => date("Y-m-d H:i:s"),
 				'status' => 'Success'
 			);
 			$CI->db->insert('ef_email_history', $db_email);
@@ -291,6 +293,7 @@ function sendmail($email_data = array('email_address' => '', 'subject' => '', 'b
 			'subject' => isset($email_data['subject']) ? $email_data['subject'] : '',
 			'body' => isset($email_data['body']) ? $email_data['body'] : '',
 			'remarks' => 'Email data is not complete',
+			'created_date' => date("Y-m-d H:i:s"),
 			'status' => 'Failed'
 		);
 		$CI->db->insert('ef_email_history', $db_email);

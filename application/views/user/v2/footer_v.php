@@ -20,9 +20,6 @@
 							Designed by Anati Radzi © 2017 eFutebol. All Rights Reserved.
 						</div>
 					</div>
-					<div class="scroll-to-top">
-						<i class="icon-arrow-up"></i>
-					</div>
 					<!-- END INNER FOOTER -->
 					<!-- END FOOTER -->
 				</div>

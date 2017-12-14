@@ -117,11 +117,6 @@
 			.table-scrollable {
 				border-radius: 5px;
 			}
-			@media (min-width: 1200px){
-				.container {
-					width: 1500px;
-				}
-			}
 			.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 				padding: 5px;
 			}
@@ -130,6 +125,12 @@
 			}
 			.btn.dark:not(.btn-outline) {
 				background-color: #000000;
+			}
+			.table thead tr th {
+				font-size: 12px;
+			}
+			.table td, .table th {
+				font-size: 12px;
 			}
 		</style>
 		<!-- END THEME LAYOUT STYLES -->

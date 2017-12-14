@@ -50,7 +50,7 @@
 								<th class="col-md-1"> Amount </th>
 								<th class="col-md-1"> Duration </th>
 								<th class="col-md-1"> Court </th>
-								<th class="col-md-1"> Booking Type </th>
+								<th class="col-md-1" style="min-width: 100px;"> Booking Type </th>
 								<th style="width: 1%; min-width: 120px" > Action </th>
 							</tr>
 						</thead>
