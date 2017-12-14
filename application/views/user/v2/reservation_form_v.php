@@ -1,3 +1,8 @@
+<?php
+//nama concept untuk java script. 
+//kenapa ajax = sebab nak buat background process tanpa refresh page (value dah set nanti hilang)
+?>
+
 <?php $this->load->view('user/v2/header_v'); ?>
 <style>
 .date-picker[readonly]{
@@ -202,11 +207,10 @@
 <!-- BEGIN CUSTOM SCRIPTS -->
 <script type="text/javascript">
 	var checkAvailability = function(){
-		// Check 
 		$.ajax({
 			url: baseUrl + 'reservation/check_availability',
 			method: "POST",
-			data: $('.form-check').serialize(),
+			data: $('.form-check').serialize(), 
 			dataType: 'json',
 			// async: false,
 			success: function(result){
@@ -215,8 +219,9 @@
 					$('.modal-alert').find('.modal-body').html(result['message']);
 					$('.modal-alert').modal('show');
 				}
+				//kalau success
 				else{
-					$('.modal-booking').find('.booking_date').html(result['booking_details']['date']);
+					$('.modal-booking').find('.booking_date').html(result['booking_details']['date']); //modal class = popup
 					$('.modal-booking').find('.booking_time').html(result['booking_details']['start_end']);
 					$('.modal-booking').find('.duration').html(result['booking_details']['duration_view']);
 					$('.modal-booking').find('.court_name').html(result['booking_details']['court_name']);
@@ -274,6 +279,7 @@
 		});
 		
 		$(".timepicker-default").timepicker({ defaultTime: '08:00', autoclose: true, showSeconds: false,showMeridian: false,minuteStep: 60 });
+		//button confirm booking
 		$('.btn-confirm-booking').on('click', function(){
 			$('.form-confirm-booking').ajaxSubmit({
 				dataType: 'json',

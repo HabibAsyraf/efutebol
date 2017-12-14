@@ -14,7 +14,7 @@ class Login_m extends CI_Model {
 		if($post['password'] == ""){
 			$error_msg['password'] = "Please enter your Password";
 		}
-		// ad($error_msg);ad($post); exit();
+		
 		#If has error occured, return the error message back to the login page
 		if(sizeof($error_msg) > 0){
 			set_message(implode(" | ", $error_msg), "danger");

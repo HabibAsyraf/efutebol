@@ -4,29 +4,46 @@ class Reservation_m extends CI_Model {
 		parent::__construct();
 	}
 	
-	function check_availability($post = array()){
+	function check_availability($post = array()){ //dia ambik dari controller
 		$result = array('result' => "failed", 'message' => 'Error has been occured. Please try again later.');
-		if(is_array($post) && sizeof($post) > 0){
-			$end_time = date("H:i", strtotime($post['booking_time'] . ' +'.$post['duration'] . ' hour'));
-			$booking_date_time = date("Y-m-d", strtotime(datepicker2mysql($post['booking_date']))) . ' ' . $post['booking_time'].':00';
-			$booking_date_time_end = date("Y-m-d H:i:s", strtotime($booking_date_time . ' +'.$post['duration'] . ' hour'));
+		if(is_array($post) && sizeof($post) > 0){ //kena besar dari kosong, kalau kurang ada error.
+			$end_time = date("H:i", strtotime($post['booking_time'] . ' +'.$post['duration'] . ' hour')); //dapatkan end time
+			$booking_date_time = date("Y-m-d", strtotime(datepicker2mysql($post['booking_date']))) . ' ' . $post['booking_time'].':00'; //dapatkan date and time. eg: 2017-11-09 23:00
+			$booking_date_time_end = date("Y-m-d H:i:s", strtotime($booking_date_time . ' +'.$post['duration'] . ' hour')); //dapatkan end time sekali date. eg: 2017-11-10 01:00 (beza dia kat tarikh)
 			
-			if((strtotime($post['booking_time']) >= strtotime("03:00") && strtotime($post['booking_time']) < strtotime("08:00")) || 
+			/* 1. dia check start time dalam masa operation hour ke tak
+			   or 
+			   2. dia check end time in between 3am-8am
+			   3. kalau true, keluar result
+			 */
+			if((strtotime($post['booking_time']) >= strtotime("03:00") && strtotime($post['booking_time']) < strtotime("08:00")) ||
 			(strtotime($end_time) > strtotime("03:00") && strtotime($end_time) < strtotime("08:00"))){
 				$result['message'] = "Court is unavailable. Operation hour is from 8:00 AM until 3:00 AM";
 			}
+			//check booking date, kalau sebelum dari current time, keluar result.
 			else if(strtotime($booking_date_time) < strtotime(date("Y-m-d H:i:s"))){
 				$result['message'] = "The time is already passed. Please choose another time.";
 			}
+			//ni baru check database
 			else{
+				
+				/* ini query nak check availability dala database.
+				   1. kalau masa start tu in between masa yang dah booking
+				   0r
+				   2. end time dia habis dalam masa orang yang dah booking
+				   3. check status 
+				   4. check court id dulu baru 1, 2, 3
+				*/
 				$query_chk = $this->db->query("SELECT * FROM `ef_booking` "
 											. "WHERE `court_id` = " . $this->db->escape($post['court_id']) . " "
 											. "AND ((`booking_date_time` <= " . $this->db->escape($booking_date_time) . " AND `booking_date_time_end` > " . $this->db->escape($booking_date_time) . ") "
 											. "OR (`booking_date_time` < " . $this->db->escape($booking_date_time_end) . " AND `booking_date_time_end` >= " . $this->db->escape($booking_date_time_end) . ")) "
-											. "AND `status` IN ('D','B')");
+											. "AND `status` != 'C'");
+				//kalau ada result, maksudnya dah reserved. 
 				if($query_chk->num_rows() > 0){
 					$result['message'] = "We're sorry, court is unavailable (Already reserved). Please check on another court/date/time.";
 				}
+				//kumpul data
 				else{
 					$row_court = $this->court_m->get_single($post['court_id']);
 					$rate_per_hour = 80.00;
@@ -86,7 +103,7 @@ class Reservation_m extends CI_Model {
 								  'Receipt: <a href="'.base_url().'reservation/receipt/'.$result['booking_id'].'">'.base_url().'reservation/receipt/'.$result['booking_id'].'</a>.<br/><br/>'.
 								  'See you soon.<br/><br/><br/>'.
 								  'eFutebol.';
-			sendmail($email_data);
+			sendmail($email_data); //panggil sendmail daripada application/helpers/general_helper.php (function sendmail)
 			
 			//Sending email to admin
 			$email_data['email_address'] = 'helloefutebol@gmail.com';
