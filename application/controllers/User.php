@@ -30,7 +30,7 @@ class User extends CI_Controller{
 		
 		$this->load->view('user/v2/registration_form_v', $data);
 	}
-	
+	//login
 	public function login_form($info = ""){
 		if($_POST){
 			$result = $this->login_m->logging_in($this->input->post());

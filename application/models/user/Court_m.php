@@ -3,7 +3,7 @@ class Court_m extends CI_Model {
 	function __construct(){
 		parent::__construct();
 	}
-	
+	//sini ambik senarai court yang ada dalam database
 	function get_all($return_type = "query"){
 		$query_court = $this->db->query("SELECT * FROM `ef_court` ORDER BY `court_name` ASC");
 		if($return_type == "array_list"){

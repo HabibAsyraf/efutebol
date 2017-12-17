@@ -5,14 +5,14 @@ class Reservation_m extends CI_Model {
 	}
 	
 	function listing($where = ""){
-		$order_by = "ORDER BY `booking_date_time` DESC";
+		$order_by = "ORDER BY `booking_date_time` DESC"; //ambik paling latest ekot tarikh booking
 		
 		$pag["base_url"] = base_url() . "admin/reservation/listing/".$this->uri->segment(4);
-		$pag["per_page"] = 15;
+		$pag["per_page"] = 15; //satu page 15 list je
 		$pag["uri_segment"] = 5;
 		$start_form  = $this->uri->segment(5);
 		$limit = " LIMIT " . $pag["per_page"];
-		if(is_numeric($start_form) && $start_form > 1) 
+		if(is_numeric($start_form) && $start_form > 1) //data tu ada  
 			$limit = " LIMIT " . $start_form . ", " . $pag["per_page"];
 		
 		$sql_count = "SELECT COUNT(`booking_id`) AS total FROM `ef_booking` " . $where;
@@ -22,7 +22,7 @@ class Reservation_m extends CI_Model {
 		$query = $this->db->query("SELECT * FROM `ef_booking` " . $where . " " . $order_by . " " . $limit);
 		return $query;
 	}
-	
+	//search di sini
 	function search($search_data = array()){
 		$where = "";
 		if(is_array($search_data) && sizeof($search_data) > 0){

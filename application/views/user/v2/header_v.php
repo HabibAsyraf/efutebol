@@ -41,17 +41,17 @@
 			}
 			.page-header-top{
 				background: url(<?php echo base_url(); ?>assets/images/header.jpg) left center no-repeat;
-				background-size: cover;
+				background-size: cover; //header
 			}
 			.page-header .page-header-top {
 				height: 150px;
 			}
 			.page-header .page-header-menu {
-				background: #000000e3;
+				background: #000000e3; //top navigation color (black)
 			}
 			.page-header .page-header-menu .hor-menu .navbar-nav>li.active>a, .page-header .page-header-menu .hor-menu .navbar-nav>li.active>a:hover, .page-header .page-header-menu .hor-menu .navbar-nav>li.current>a, .page-header .page-header-menu .hor-menu .navbar-nav>li.current>a:hover {
-				color: #000000;
-				background: #ffffff;
+				color: #000000; //font kat top nav bila click
+				background: #ffffff; //warna background top nav bila click
 			}
 			.page-header .page-header-menu .hor-menu .navbar-nav>li.open>a, .page-header .page-header-menu .hor-menu .navbar-nav>li:hover>a, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:active, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:focus, .page-header .page-header-menu .hor-menu .navbar-nav>li>a:hover {
 				background: #c2c2c2!important;
@@ -66,8 +66,8 @@
 				color: #000000;
 			}
 			.page-footer {
-				background: #000000e3;
-				color: #ffffff;
+				background: #000000e3; //warna hitam
+				color: #ffffff; //warna font
 			}
 			#wowslider-container1{
 				max-height: unset;
@@ -78,7 +78,7 @@
 				max-width: unset;
 			}
 			.portlet.box.black>.portlet-title, .portlet.black, .portlet>.portlet-body.black {
-				background-color: #000000;
+				background-color: #000000; //welcome
 			}
 			.portlet.box.green-hulk>.portlet-title, .portlet.green-hulk, .portlet>.portlet-body.green-hulk {
 				background-color: #007400;
@@ -108,6 +108,7 @@
 				top: 5px;
 				right: 0px;
 			}
+			//sini ada background
 			body, .page-wrapper .page-wrapper-middle {
 				background: url(<?php echo base_url(); ?>assets/images/background3.jpg) center bottom no-repeat;
 				background-size: cover;

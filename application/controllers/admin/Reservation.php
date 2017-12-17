@@ -35,7 +35,7 @@ class Reservation extends CI_Controller{
 			// ad($search_data); exit();
 			if(is_array($search_data)){
 				$where = $this->reservation_m->search($search_data);
-			}
+			} //panggil search kat model
 			else{
 				$encrypted_data = base64url_encode(serialize(array()));
 				redirect('admin/reservation/listing/'.$encrypted_data);

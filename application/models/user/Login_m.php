@@ -7,6 +7,8 @@ class Login_m extends CI_Model {
 	function logging_in($post = array()){
 		#Validate login field
 		$error_msg = array();
+		/* 1) kalau tak isi email, keluar error
+		   2) kalau tak isi password, keluar error */
 		if($post['email_address'] == ""){
 			$error_msg['email_address'] = "Please enter your Email Address";
 		}

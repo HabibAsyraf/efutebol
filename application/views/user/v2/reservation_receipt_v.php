@@ -17,7 +17,7 @@
 							<div style="color: steelblue; font-weight: bold;" class="alert blink_me alert-success alert-dismissable">
 								Booking has been confirmed.<br/>
 								Please show this receipt at the counter.<br/>
-								See you soon.
+								Please arrive atleast 15 minutes early before your booked time!
 							</div>
 							<div class="row">
 								<div class="col-md-12">

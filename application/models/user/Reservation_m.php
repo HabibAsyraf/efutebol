@@ -27,7 +27,7 @@ class Reservation_m extends CI_Model {
 			//ni baru check database
 			else{
 				
-				/* ini query nak check availability dala database.
+				/* ini query nak check availability dalam database.
 				   1. kalau masa start tu in between masa yang dah booking
 				   0r
 				   2. end time dia habis dalam masa orang yang dah booking

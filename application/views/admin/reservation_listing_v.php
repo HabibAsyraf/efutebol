@@ -111,13 +111,13 @@
 		$('.btn-reset-search').on('click', function(){
 			location.href = baseUrl + "admin/reservation";
 		});
-		
+		//button cancel
 		$('.btn-cancel').on('click', function(){
 			if(confirm("Once cancelled cannot be reversed.\nAre you sure?")){
 				location.href = baseUrl + "admin/reservation/cancel/" + $(this).data('info');
 			}
 		});
-		
+		//button done
 		$('.btn-done').on('click', function(){
 			if(confirm("Once set to done cannot be reversed.\nAre you sure?")){
 				location.href = baseUrl + "admin/reservation/complete_reservation/" + $(this).data('info');

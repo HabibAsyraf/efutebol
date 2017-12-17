@@ -11,6 +11,7 @@ class Reservation extends CI_Controller{
 	}
 	
 	public function reservation_form(){
+		//check dah login belum
 		if($_POST){
 			if(isset($this->session->userdata('login_user')['logged_in']) && $this->session->userdata('login_user')['logged_in'] == TRUE){
 				$reservation_data = encrypt_data($_POST);
@@ -21,7 +22,7 @@ class Reservation extends CI_Controller{
 				redirect('user/login_form');
 			}
 		}
-		
+		//query_court panggil dari court_m untuk dapat semua senarai court
 		$data['query_court'] = $this->court_m->get_all();
 		
 		$data['meta_title'] = "Reservation Form";
@@ -42,7 +43,7 @@ class Reservation extends CI_Controller{
 		
 		exit("Please no direct access.");
 	}
-	
+	//di sini ada calculation
 	public function confirm(){
 		if($this->input->is_ajax_request()){
 			$result = $this->reservation_m->confirm_reservation($this->input->post());

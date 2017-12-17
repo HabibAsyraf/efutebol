@@ -3,14 +3,14 @@ class User_m extends CI_Model {
 	function __construct(){
 		parent::__construct();
 	}
-	
+	//kalau dia post something, masuk dalam database
 	function save_registration($post = array()){
 		if(is_array($post) && sizeof($post) > 0){
 			$db_user = array(
 				'name' => trim($post['name']),
 				'contact_no' => trim($post['contact_no']),
 				'email_address' => trim($post['email_address']),
-				'user_type' => 'user'
+				'user_type' => 'user' //dah auto set
 			);
 			
 			$error_msg = array();
@@ -21,6 +21,7 @@ class User_m extends CI_Model {
 			if($db_user['contact_no'] == ""){
 				$error_msg['contact_no'] = "Please enter your Contact No";
 			}
+			//ni untuk check phone number valid ke tak
 			else if(!filter_phone($db_user['contact_no'])){
 				$error_msg['contact_no'] = "Invalid Contact No.";
 			}
@@ -56,10 +57,12 @@ class User_m extends CI_Model {
 					$error_msg['password'] = "Please enter password";
 				}
 			}
+			//check password ngan confirm password tally ke tak
 			else if($post['password'] !== $post['confirm_password']){
 				$error_msg['password'] = "Password and Confirm Password must be the same value";
 				$error_msg['confirm_password'] = "";
 			}
+			//condition password character
 			else if(strlen($post['password']) != 6){
 				$error_msg['password'] = "Password length must be 6";
 				$error_msg['confirm_password'] = "";
@@ -69,7 +72,7 @@ class User_m extends CI_Model {
 				set_message(implode(" | ", $error_msg), "danger");
 				return $error_msg;
 			}
-			
+			//information masuk dalam db
 			$db_user['password'] = md5($post['password']);
 			$this->db->insert('ef_user', $db_user);
 			set_message("Registration succeed.", "success");
@@ -153,8 +156,10 @@ class User_m extends CI_Model {
 			if($post['email_address'] == ""){
 				$error_msg['email_address'] = "Please enter your email address";
 			}
+			//function untuk mutiple error
+			//array size lebih dari kosong ada error
 			if(sizeof($error_msg) > 0){
-				set_message(implode(" | ", $error_msg), "danger");
+				set_message(implode(" | ", $error_msg), "danger"); //gabung error message dalam array utk jadi satu message guna function php implode
 				return $error_msg;
 			}
 			

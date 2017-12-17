@@ -71,6 +71,7 @@
 								<div class="form-group">
 									<label class="control-label"> Court Number <span class="required">*</span></label>
 									<select name="court_id" class="form-control court_id">
+									<!-- query_court keluarkan dropdown selection court -->
 										<?php
 										if($query_court->num_rows() > 0){
 											foreach($query_court->result() as $row_court){ ?>
