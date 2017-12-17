@@ -40,22 +40,23 @@ require('includes/config.php');
 		else
 		{
 			move_uploaded_file($_FILES['img']['tmp_name'],"../upload_image/".$_FILES['img']['name']);
-			$b_img = "upload_image/".$_FILES['img']['name'];	
+			$b_img = "upload_image/".$_FILES['img']['name'];
 			
-			move_uploaded_file($_FILES['ebook']['tmp_name'],"../upload_ebook/".$_FILES['ebook']['name']);
-			$b_pdf = "upload_ebook/".$_FILES['ebook']['name'];	
-		
+			move_uploaded_file($_FILES['img']['tmp_name'],"../upload_ebook/".$_FILES['img']['name']);
+			$b_pdf = "upload_ebook/".$_FILES['img']['name'];
+			
 			$b_nm=$_POST['name'];
 			$b_desc=$_POST['description'];
 			$b_price=$_POST['price'];
-			$b_qt=$_POST['quantity'];			
+			$b_qt=$_POST['quantity'];
 			$b_st=$_POST['status'];
 			
 			
 			$query="insert into book(b_nm,b_desc,b_price,b_qt,b_st,b_img)
 			values('$b_nm','$b_desc','$b_price','$b_qt','$b_st','$b_img')";
 			
-			mysqli_query($conn,$query) or die($query."Can't Connect to Query...");
+			// Please use die("Error : " . mysqli_error($conn)). So that you can see what the error is. On tak on ?
+			mysqli_query($conn,$query) or die("Error : " . mysqli_error($conn));
 			header("location:addbook.php");
 		
 		}

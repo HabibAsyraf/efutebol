@@ -2,9 +2,10 @@
 session_start();
 require('includes/config.php');
 
-	$q="select * from book";
-	 $res=mysqli_query($conn,$q) or die("Can't Execute Query...");
-	?>
+$q="select * from book";
+$res=mysqli_query($conn,$q) or die("Can't Execute Query...");
+
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
@@ -51,52 +52,46 @@ Description: A two-column, fixed-width and lightweight template ideal for 1024x7
 		<div class="post">
 			<h1 class="title"></h1>
 			<div class="entry">
-				
-					<table border='1' WIDTH='100%'>
-						<tr>
-						<td colspan="7"><a href="addbook.php">Add New Book</a></td>
-						</tr>
-						<tr>
-<td WIDTH='10%' style="color:darkgreen"><b><u>SR.NO</u></b></td>
-<TD style="color:darkgreen" WIDTH='50%'><b><u>NAME</u></b></TD>
-<TD style="color:darkgreen" WIDTH='20%'><b><u>DESCRIPTION</u></b></TD>
-<TD style="color:darkgreen" WIDTH='20%'><b><u>PRICE</u></b></TD>
-<TD style="color:darkgreen" WIDTH='25%'><b><u>QUANTITY</u></b></TD>
-<TD style="color:darkgreen" WIDTH='25%'><b><u>STATUS</u></b></TD>
-<TD style="color:darkgreen" WIDTH='25%'><b><u>IMAGE</u></b></TD>
-<TD style="color:darkgreen" WIDTH='25%'><b><u>DELETE</u></b></TD>	
-<TD style="color:darkgreen" WIDTH='25%'><b><u>UPDATE</u></b></TD>			
-							
-						</tr>
-						<?php
-							$count=1;
-							while($row=mysqli_fetch_assoc($res))
-							{
-							echo '<tr>
-										<td>'.$count.'
-										<td>'.$row['b_nm'].'
-										<td>'.$row['b_desc'].'
-										<td>'.$row['b_price'].'
-										<td>'.$row['b_qt'].'
-										<td>'.$row['b_st'];
-				echo "<td><img src='../$row[b_img]' width='50'/>";
-										
-										
-									echo 	'<td><a href="process_del_book.php?id='.$row['b_id'].'"><img src="images/drop.png" ></a>
-											<td><a href="updatetry.php?id='.$row['b_id'].'"><img src="images/edit.png" ></a>
-												
-									
-									</tr>';
-									$count++;
-							}
-						?>
-
-					</TABLE>
-				
+				<table border='1' width='100%'>
+					<tr>
+					<td colspan="9"><a href="addbook.php">Add New Book</a></td>
+					</tr>
+					<tr>
+						<td width='10%' style="color:darkgreen"><b><u>SR.NO</u></b></td>
+						<td style="color:darkgreen" width='50%'><b><u>NAME</u></b></td>
+						<td style="color:darkgreen" width='20%'><b><u>DESCRIPTION</u></b></td>
+						<td style="color:darkgreen" width='20%'><b><u>PRICE</u></b></td>
+						<td style="color:darkgreen" width='25%'><b><u>QUANTITY</u></b></td>
+						<td style="color:darkgreen" width='25%'><b><u>STATUS</u></b></td>
+						<td style="color:darkgreen" width='25%'><b><u>IMAGE</u></b></td>
+						<td style="color:darkgreen" width='25%'><b><u>DELETE</u></b></td>
+						<td style="color:darkgreen" width='25%'><b><u>UPDATE</u></b></td>
+					</tr>
+					<?php
+					$count=1;
+					if(mysqli_num_rows($res) > 0){
+						while($row=mysqli_fetch_assoc($res))
+						{
+							?>
+							<tr>
+								<td><?php echo $count; ?></td>
+								<td><?php echo $row['b_nm']; ?></td>
+								<td><?php echo $row['b_desc']; ?></td>
+								<td><?php echo $row['b_price']; ?></td>
+								<td><?php echo $row['b_qt']; ?></td>
+								<td><?php echo $row['b_st']; ?></td>
+								<td><img src="../<?php echo $row['b_img']; ?>" width="50"/></td>
+								<td><a href="process_del_book.php?id=<?php echo $row['b_id']; ?>"><img src="images/drop.png" ></a>
+								<td><a href="updatetry.php?id=<?php echo $row['b_id']; ?>"><img src="images/edit.png" ></a>
+							</tr>
+							<?php
+							$count++;
+						}
+					}
+					?>
+				</table>
 			</div>
-			
 		</div>
-		
 	</div>
 	<!-- end content -->
 	<!-- start sidebar -->
