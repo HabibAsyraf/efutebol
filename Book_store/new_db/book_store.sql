@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.7.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 18, 2017 at 06:03 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Host: localhost
+-- Generation Time: Dec 18, 2017 at 11:31 PM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -87,7 +87,8 @@ CREATE TABLE `feedback` (
   `f_fullname` varchar(50) NOT NULL,
   `f_email` varchar(50) NOT NULL,
   `f_subject` varchar(50) NOT NULL,
-  `f_message` varchar(50) NOT NULL,
+  `f_message` text NOT NULL,
+  `f_replied_message` text NOT NULL,
   `f_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -95,62 +96,13 @@ CREATE TABLE `feedback` (
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`f_id`, `f_fullname`, `f_email`, `f_subject`, `f_message`, `f_status`) VALUES
-(1, 'Nur Jamsyeiqa binti Jamaluddin', 'syeiqaqa@gmail.com', 'BITS 1213 Operating System', 'Is this book available at this sytem?', 'Settle'),
-(2, 'Fatimah bin Ali', 'fatimah_ali@yahoo.com', 'BITS 2313 Local Area Network', 'How much for this book?', 'Settle'),
-(3, 'Munirah binti Sharudin', 'munirah.sharudin@gmail.com', 'BITP 2213 Software Engineering', 'How to sell this book? Thank you.', ''),
-(4, 'Nuratikah binti Abu Bakar', 'natikahab95@gmail.com', 'Mandarin', 'Can you write more description about this book.', ''),
-(5, 'Amirul bin Rashid', 'mirul.utem@gmail.com', 'BITP 2213 Software Engineering', 'Thank you ! I can get this book with cheapest pric', ''),
-(6, 'Habib', 'habib@logicwise.com.my', 'Sjsjsjsjsj', 'Apa ni. Try jap', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sale`
---
-
-CREATE TABLE `sale` (
-  `s_id` int(4) NOT NULL,
-  `u_id` int(4) NOT NULL,
-  `b_id` int(4) NOT NULL,
-  `s_qt` int(50) NOT NULL,
-  `s_price` int(50) NOT NULL,
-  `s_address` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sale`
---
-
-INSERT INTO `sale` (`s_id`, `u_id`, `b_id`, `s_qt`, `s_price`, `s_address`) VALUES
-(1, 0, 0, 123, 0, 'sdf'),
-(2, 0, 0, 1136295354, 1, 'RM8.00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shipping_details`
---
-
-CREATE TABLE `shipping_details` (
-  `id` int(11) NOT NULL,
-  `b_nm` varchar(50) NOT NULL,
-  `name` char(50) NOT NULL,
-  `address` text NOT NULL,
-  `phone` bigint(20) NOT NULL,
-  `f_id` varchar(50) NOT NULL,
-  `c_seller` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `shipping_details`
---
-
-INSERT INTO `shipping_details` (`id`, `b_nm`, `name`, `address`, `phone`, `f_id`, `c_seller`) VALUES
-(6, '', 'Amalina', ' Kolej Kediaman Satria', 1234567890, '12345678', 0),
-(8, 'adsva', 'dsafssdaf', 'dsfad', 0, '', 0),
-(9, 'Database, mandarin, ', 'sarah', ' lestari', 1136295354, '', 0),
-(10, 'Statistic', 'Atikah', 'SAtria ', 1136295354, '', 0);
+INSERT INTO `feedback` (`f_id`, `f_fullname`, `f_email`, `f_subject`, `f_message`, `f_replied_message`, `f_status`) VALUES
+(1, 'Nur Jamsyeiqa binti Jamaluddin', 'syeiqaqa@gmail.com', 'BITS 1213 Operating System', 'Is this book available at this sytem?', 'Hahahaha', 'To Do'),
+(2, 'Fatimah bin Ali', 'fatimah_ali@yahoo.com', 'BITS 2313 Local Area Network', 'How much for this book?', '', 'Settle'),
+(3, 'Munirah binti Sharudin', 'munirah.sharudin@gmail.com', 'BITP 2213 Software Engineering', 'How to sell this book? Thank you.', '', ''),
+(4, 'Nuratikah binti Abu Bakar', 'natikahab95@gmail.com', 'Mandarin', 'Can you write more description about this book.', '', ''),
+(5, 'Amirul bin Rashid', 'mirul.utem@gmail.com', 'BITP 2213 Software Engineering', 'Thank you ! I can get this book with cheapest pric', '', ''),
+(6, 'Habib', 'habib@logicwise.com.my', 'Sjsjsjsjsj', 'Apa ni. Try jap', 'Apa try try?\r\nIshh dia ni', 'Settle');
 
 -- --------------------------------------------------------
 
@@ -178,9 +130,9 @@ CREATE TABLE `shipping_transaction` (
 --
 
 INSERT INTO `shipping_transaction` (`t_id`, `t_uniq_code`, `t_address`, `u_id`, `u_fnm`, `u_email`, `u_contact`, `b_id`, `b_nm`, `b_price`, `b_qt`, `t_total`) VALUES
-(1, '5a379149db7fe', ' 1-2-3 Santan Jalan Kaka Tua', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 73, 'Android Cook Book', '30.00', 3, '90.00'),
-(2, '5a3791c295177', ' Habskjhsbkabk\r\naslajhsas\r\naksjhaksjahs', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 73, 'Android Cook Book', '30.00', 1, '63.00'),
-(3, '5a3791c295177', ' Habskjhsbkabk\r\naslajhsas\r\naksjhaksjahs', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 64, 'Software Engineering', '11.00', 3, '63.00');
+(16, '5a37ddbe727bf', 'Hahahaha\r\nHahahah\r\nJalan Hahahha\r\nHahaha', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 73, 'Android Cook Book', '30.00', 2, '60.00'),
+(17, '5a37ddbe727bf', 'Hahahaha\r\nHahahah\r\nJalan Hahahha\r\nHahaha', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 70, 'Wireless', '15.00', 1, '15.00'),
+(18, '5a37df11c136e', 'Hahahahaha\r\nHahahahaha\r\nhaahhahaha\r\nhahahahahahah', 20, 'Habib', 'habib@logicwise.com.my', '017-6884891', 73, 'Android Cook Book', '30.00', 2, '60.00');
 
 -- --------------------------------------------------------
 
@@ -270,18 +222,6 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`f_id`);
 
 --
--- Indexes for table `sale`
---
-ALTER TABLE `sale`
-  ADD PRIMARY KEY (`s_id`);
-
---
--- Indexes for table `shipping_details`
---
-ALTER TABLE `shipping_details`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `shipping_transaction`
 --
 ALTER TABLE `shipping_transaction`
@@ -320,20 +260,10 @@ ALTER TABLE `category`
 ALTER TABLE `feedback`
   MODIFY `f_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `sale`
---
-ALTER TABLE `sale`
-  MODIFY `s_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `shipping_details`
---
-ALTER TABLE `shipping_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
 -- AUTO_INCREMENT for table `shipping_transaction`
 --
 ALTER TABLE `shipping_transaction`
-  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `subcat`
 --

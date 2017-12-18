@@ -79,7 +79,7 @@ Description: A two-column, fixed-width and lightweight template ideal for 1024x7
 				
 												
 									echo 	
-											'<td><a href="process_update_feedback.php?id='.$row['f_id'].'"><img src="images/edit.png" ></a>
+											'<td><a href="feedback_details.php?id='.$row['f_id'].'"><img src="images/edit.png" ></a>
 									</tr>';
 									$count++;
 							}

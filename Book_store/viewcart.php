@@ -28,13 +28,13 @@
 					<div class="entry">
 						<form action="process_cart.php" method="POST">
 							<table width="100%" border="0">
-								<tr >
-									<Td> <b>No
-									<td> <b>Category									
-									<td> <b>Qty
-									<td> <b>Price(RM/each)
-									<td> <b>Total(RM)
-									<td> <b>Delete
+								<tr>
+									<td> <b>No</b> </td>
+									<td> <b>Category</b> </td>
+									<td> <b>Qty</b> </td>
+									<td> <b>Price(RM/each)</b> </td>
+									<td> <b>Total(RM)</b> </td>
+									<td> <b>Delete</b> </td>
 								</tr>
 								<!-- line -->
 								<tr>
@@ -51,31 +51,39 @@
 									{	
 										echo '
 											<tr>
-												<Td> '.$i.'
-												<td> '.$x['nm'].'
-												<td> <input type="text" size="2" value="'.$x['qty'].'" name="'.$id.'">
-												<td> '.$x['rate'].'
-												<td> '.($x['qty']*$x['rate']).'
-												<td> <a href="process_cart.php?id='.$id.'">Delete</a>
+												<td> '.$i.'</td>
+												<td> '.$x['nm'].'</td>
+												<td> <input type="text" size="2" value="'.$x['qty'].'" name="'.$id.'"> </td>
+												<td> '.number_format($x['rate'], 2, ".", "").' </td>
+												<td> '.number_format(($x['qty']*$x['rate']), 2, ".", "").' </td>
+												<td> <a href="process_cart.php?id='.$id.'">Delete</a> </td>
 											</tr>';
 										
 										$tot = $tot + ($x['qty']*$x['rate']);
 										$i++;
-									}
-								} ?>
+									} ?>
+									<tr>
+										<td colspan="7"><hr style="border:1px Solid #a1a1a1;"></td>
+									</tr>
+									
+									<tr>
+										<td colspan="7" align="right">
+											<h4>Pay Total (inc GST%) : RM</h4>
+										</td>
+										<td>
+											<h4><?php echo number_format($tot, 2, ".", ""); ?> </h4>
+										</td>
+									</tr>
+									<?php
+								}
+								else{ ?>
+									<tr>
+										<td colspan="7" style="text-align: center">Cart Is Empty</td>
+									</tr>
+									<?php
+								}
+								?>
 								
-								<tr>
-									<td colspan="7"><hr style="border:1px Solid #a1a1a1;">
-								</tr>
-								
-								<tr>
-									<td colspan="7" align="right">
-										<h4>Pay Total (inc GST%) : RM</h4>
-									</td>
-									<td>
-										<h4><?php echo $tot; ?> </h4>
-									</td>
-								</tr>
 								<tr>
 									<td colspan="7"><hr style="border:1px Solid #a1a1a1;">
 								</tr>
@@ -91,8 +99,6 @@
 								<div></div>
 								<a href="checkout.php">Checkout Now<a/>
 							</center>
-						
-						
 						</form>
 					</div>
 					
@@ -114,9 +120,9 @@
 		
 		<!-- start footer -->
 		<div id="footer">
-					<?php
-						include("includes/footer.inc.php");
-					?>
+			<?php
+			include("includes/footer.inc.php");
+			?>
 		</div>
 		<!-- end footer -->
 	</body>

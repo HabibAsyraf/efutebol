@@ -2,15 +2,15 @@
 session_start();
 require('includes/config.php');
 
-$q="SELECT * FROM `feeback` WHERE `b_id` = " . mysqli_real_escape_string($conn, ($_GET['id'] > 0 ? $_GET['id'] : 0)) . " ORDER BY `f_id` DESC";
+$q="SELECT * FROM `feedback` WHERE `f_id` = '" . mysqli_real_escape_string($conn, $_GET['id']) . "'";
 $res = mysqli_query($conn,$q) or die("Error : " . mysqli_error($conn));
 
 //If book id not found in database
 if(mysqli_num_rows($res) == 0){
 	?>
-	Book ID Not Found
+	Feedback Not Found
 	<br/>
-	<a href="all_book.php">Back</a>
+	<a href="feedback.php">Back</a>
 	<?php
 	
 	//Stop the page process here
@@ -18,8 +18,7 @@ if(mysqli_num_rows($res) == 0){
 }
 
 // fetch single record
-$book_details = mysqli_fetch_assoc($res);
-exit();
+$feedback_details = mysqli_fetch_assoc($res);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,36 +41,39 @@ exit();
 				<div class="post" style="margin-left:100px">
 					<h1 class="title" >Edit Book</h1>
 					<div class="entry">
-						<form action="updatetryfunc.php" method="POST" enctype="multipart/form-data">
-							<input type="hidden" name="id" size="40" value="<?php echo $book_details['b_id']; ?>">
+						<form action="process_update_feedback.php" method="POST" enctype="multipart/form-data">
+							<input type="hidden" name="f_id" size="40" value="<?php echo $feedback_details['f_id']; ?>">
 							
-							<br/><b>Book Name :</b><br/>
-							<input type="text" name="name" size="40" value="<?php echo $book_details['b_nm']; ?>">
+							<br/><b>Fullname :</b><br/>
+							<input type="text" value="<?php echo $feedback_details['f_fullname']; ?>" disabled="disabled" />
 							<br/><br/>
 							
-							<b>Description :</b><br/>
-							<textarea cols="40" rows="6" name="description" ><?php echo $book_details['b_desc']; ?></textarea>
+							<br/><b>E-Mail :</b><br/>
+							<input type="text" value="<?php echo $feedback_details['f_email']; ?>" disabled="disabled" />
 							<br/><br/>
 							
-							<b>Price (RM) :</b><br/>
-							<input type="text" name="price" size="40" value="<?php echo $book_details['b_price']; ?>">
+							<br/><b>Subject :</b><br/>
+							<input type="text" value="<?php echo $feedback_details['f_subject']; ?>" disabled="disabled" />
 							<br/><br/>
 							
-							<b>Quantity :</b><br/>
-							<input type="text" name="quantity" size="40" value="<?php echo $book_details['b_qt']; ?>">
+							<br/><b>Message :</b><br/>
+							<textarea disabled="disabled"><?php echo $feedback_details['f_message']; ?></textarea>
+							<br/>
+							<br/>
+							<hr/>
+							
+							<br/><b>Reply :</b><br/>
+							<textarea name="f_replied_message"><?php echo $feedback_details['f_replied_message']; ?></textarea>
 							<br/><br/>
 							
 							<b>Status :</b><br/>
-							<select id="status" name="status">
-								<option value="available" <?php echo $book_details['b_st'] == "available" ? 'selected="selected"' : ''; ?>>Available</option>
-								<option value="unavailable" <?php echo $book_details['b_st'] == "unavailable" ? 'selected="selected"' : ''; ?>>Unavailable</option>
+							<select id="f_status" name="f_status">
+								<option value=""></option>
+								<option value="Settle" <?php echo $feedback_details['f_status'] == "Settle" ? 'selected="selected"' : ''; ?>>Settle</option>
+								<option value="To Do" <?php echo $feedback_details['f_status'] == "To Do" ? 'selected="selected"' : ''; ?>>To Do</option>
+								<option value="Resolved" <?php echo $feedback_details['f_status'] == "Resolved" ? 'selected="selected"' : ''; ?>>Resolved</option>
+								<option value="In Progress" <?php echo $feedback_details['f_status'] == "In Progress" ? 'selected="selected"' : ''; ?>>In Progress</option>
 							</select>
-							<br/><br/>
-							
-							<b>Image:</b><br/>
-							<input type="file" name="img" size="35">
-							<br/>
-							<img src="../<?php echo $book_details['b_img']; ?>?v=<?php echo time(); ?>" width="200px" />
 							<br/><br/>
 							
 							<input  type="submit"  value="   OK   "  >

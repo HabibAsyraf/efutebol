@@ -86,7 +86,7 @@
 															<tr>
 																<td align="right">Price </td>
 																<td>: </td>
-																<td align="left">'.$row['b_price'].'</td>
+																<td align="left">'.number_format($row['b_price'], 2, ".", "").'</td>
 																
 															</tr>	
 															<div></div>

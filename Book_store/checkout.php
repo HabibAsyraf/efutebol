@@ -17,21 +17,24 @@ if(isset($_POST) && sizeof($_POST) > 0)
 		$u_fnm = mysqli_real_escape_string($conn, $_SESSION['ufnm']);
 		$u_email = mysqli_real_escape_string($conn, $_SESSION['uemail']);
 		$u_contact = mysqli_real_escape_string($conn, $_SESSION['ucontact']);
-		$t_total = mysqli_real_escape_string($conn, $_POST['t_total']);
 		$t_address = mysqli_real_escape_string($conn, $_POST['address']);
 		
 		foreach($_SESSION['cart'] as $b_id => $book_details)
 		{
-			$b_id = $b_id;
-			$b_nm = $book_details['nm'];
-			$b_price = $book_details['rate'];
-			$b_qt = $book_details['qty'];
+			$b_id = mysqli_real_escape_string($conn, $b_id);
+			$b_nm = mysqli_real_escape_string($conn, $book_details['nm']);
+			$b_price = mysqli_real_escape_string($conn, $book_details['rate']);
+			$b_qt = mysqli_real_escape_string($conn, $book_details['qty']);
+			$t_total = mysqli_real_escape_string($conn, ($book_details['qty']*$book_details['rate']));
 			
 			$query=	"INSERT INTO `shipping_transaction` (t_uniq_code, u_id, u_fnm, u_email, u_contact, t_total, b_id, b_nm, b_price, b_qt, t_address) ".
 					"values ('$t_uniq_code','$u_id','$u_fnm','$u_email','$u_contact','$t_total','$b_id','$b_nm','$b_price','$b_qt','$t_address')";
 			
 			mysqli_query($conn,$query) or die("Error : " . mysqli_error($conn));
-			header("location:payment_details.php");
+			
+			//Destroy cart session as order has been completed
+			unset($_SESSION['cart']);
+			header("location:receipt_details.php?t_uniq_code=$t_uniq_code");
 		}
 	}
 	else{
@@ -81,7 +84,7 @@ if(isset($_POST) && sizeof($_POST) > 0)
 					<br/>
 					
 					<p class="b_id"><label for="email">Address (Where to C.O.D)</label></p>
-					<textarea class="form-control" name="address" placeholder="Address" required style="resize: none; height: 100px;"> </textarea>
+					<textarea class="form-control" name="address" placeholder="Address" required style="resize: none; height: 100px;"></textarea>
 				</div>
 				<hr/>
 				<h3>Shipping Item</h3>
@@ -111,8 +114,8 @@ if(isset($_POST) && sizeof($_POST) > 0)
 									<td> '.$i.' </td>
 									<td> '.$x['nm'].' </td>
 									<td> '.$x['qty'].' </td>
-									<td> '.$x['rate'].' </td>
-									<td> '.($x['qty']*$x['rate']).' </td>
+									<td> '.number_format($x['rate'], 2, ".", "").' </td>
+									<td> '.number_format(($x['qty']*$x['rate']), 2, ".", "").' </td>
 								</tr>';
 							
 							$tot = $tot + ($x['qty']*$x['rate']);
@@ -129,7 +132,7 @@ if(isset($_POST) && sizeof($_POST) > 0)
 							<h4>Pay Total (inc GST%) : RM</h4>
 						</td>
 						<td>
-							<h4><?php echo $tot; ?> </h4>
+							<h4><?php echo number_format($tot, 2, ".", ""); ?> </h4>
 						</td>
 					</tr>
 					<tr>
@@ -142,7 +145,6 @@ if(isset($_POST) && sizeof($_POST) > 0)
 				<div style="text-align: right; padding-right: 50px">
 					<input class="buttom" name="submit" id="submit" tabindex="5" value="Confirm & Proceed" type="submit" />
 				</div>
-				<input type="hidden" name="t_total" value="<?php echo $tot; ?>" />
 				<input type="hidden" name="u_id" value="<?php echo $_SESSION['uid']; ?>" />
 				<input type="hidden" name="ufnm" value="<?php echo $_SESSION['ufnm']; ?>" />
 				<input type="hidden" name="uemail" value="<?php echo $_SESSION['uemail']; ?>" />
