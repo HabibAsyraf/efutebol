@@ -8,4 +8,5 @@
 <link href="registration/demo.css" rel="stylesheet" type="text/css" />
 <link href="registration/style.css" rel="stylesheet" type="text/css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

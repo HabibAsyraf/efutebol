@@ -2,7 +2,7 @@
 session_start();
 require('includes/config.php');
 
-$q="SELECT * FROM book WHERE b_id = " . mysqli_real_escape_string($conn, ($_GET['id'] > 0 ? $_GET['id'] : 0));
+$q="SELECT * FROM `feeback` WHERE `b_id` = " . mysqli_real_escape_string($conn, ($_GET['id'] > 0 ? $_GET['id'] : 0)) . " ORDER BY `f_id` DESC";
 $res = mysqli_query($conn,$q) or die("Error : " . mysqli_error($conn));
 
 //If book id not found in database
@@ -19,6 +19,7 @@ if(mysqli_num_rows($res) == 0){
 
 // fetch single record
 $book_details = mysqli_fetch_assoc($res);
+exit();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

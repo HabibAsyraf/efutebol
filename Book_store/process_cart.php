@@ -2,8 +2,8 @@
 
 	if(isset($_GET['nm']) and isset($_GET['rate']))
 	{
-		//add item
-		$_SESSION['cart'][] = array("nm"=>$_GET['nm'],"rate"=>$_GET['rate'],"qty"=>"1");
+		//add item. Replace item if adding same existing book id
+		$_SESSION['cart'][$_GET['b_id']] = array("nm"=>$_GET['nm'],"rate"=>$_GET['rate'],"qty"=>"1");
 		header("location: viewcart.php");
 	}
 	else if(isset($_GET['id']))
@@ -19,8 +19,12 @@
 		foreach($_POST as $id=>$val)
 		{
 			$_SESSION['cart'][$id]['qty']=$val;
-			header("location: viewcart.php");
 		}
+		
+		header("location: viewcart.php");
+	}
+	else{
+		header("location: viewcart.php");
 	}
 
 

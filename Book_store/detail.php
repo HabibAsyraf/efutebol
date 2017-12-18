@@ -13,14 +13,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<?php
+		include("includes/head.inc.php");
+	?>
 	<link rel="stylesheet" href="lightbox.css" type="text/css" media="screen" />
 	<script src="js/prototype.js" type="text/javascript"></script>
 	<script src="js/scriptaculous.js?load=effects" type="text/javascript"></script>
 	<script src="js/lightbox.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/java.js"></script>
-		<?php
-			include("includes/head.inc.php");
-		?>
 </head>
 
 <body>
@@ -150,7 +150,7 @@
 												 
 												 if(isset($_SESSION['status']))
 												 {
-													echo ' <td><a href="process_cart.php?nm='.$row['b_nm'].'&rate='.$row['b_price'].'">
+													echo ' <td><a href="process_cart.php?b_id='.$row['b_id'].'&nm='.$row['b_nm'].'&rate='.$row['b_price'].'">
 														<img src="images/addcart.jpg">
 													</a></td>';
 												}

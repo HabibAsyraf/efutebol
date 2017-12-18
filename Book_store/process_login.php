@@ -27,9 +27,7 @@ require('includes/config.php');
 			}
 		}
 		else
-		{			
-	
-			
+		{
 			$unm=$_POST['usernm'];
 			
 			$q="select * from user where u_unm='$unm'";
@@ -44,7 +42,10 @@ require('includes/config.php');
 				{
 					$_SESSION=array();
 					$_SESSION['unm']=$row['u_unm'];
-					$_SESSION['uid']=$row['u_pwd'];
+					$_SESSION['uid']=$row['u_id'];
+					$_SESSION['ufnm']=$row['u_fnm'];
+					$_SESSION['uemail']=$row['u_email'];
+					$_SESSION['ucontact']=$row['u_contact'];
 					$_SESSION['status']=true;
 					
 					if($_SESSION['unm']!="admin")

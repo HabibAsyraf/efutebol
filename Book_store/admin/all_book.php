@@ -79,7 +79,7 @@ Description: A two-column, fixed-width and lightweight template ideal for 1024x7
 								<td><?php echo $row['b_desc']; ?></td>
 								<td><?php echo $row['b_price']; ?></td>
 								<td><?php echo $row['b_qt']; ?></td>
-								<td><?php echo $row['b_st']; ?></td>
+								<td><?php echo ucwords(strtolower($row['b_st'])); ?></td>
 								<td><img src="../<?php echo $row['b_img']; ?>" width="50"/></td>
 								<td><a href="process_del_book.php?id=<?php echo $row['b_id']; ?>"><img src="images/drop.png" ></a>
 								<td><a href="updatetry.php?id=<?php echo $row['b_id']; ?>"><img src="images/edit.png" ></a>

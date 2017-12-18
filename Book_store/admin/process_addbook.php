@@ -66,5 +66,3 @@ require('includes/config.php');
 		header("location:index.php");
 	}
 ?>
-	
-	
